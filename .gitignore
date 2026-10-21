@@ -6,6 +6,12 @@ data/processed/*
 !data/processed/.gitkeep
 outputs/*
 !outputs/.gitkeep
+# Pre-built artifacts committed so the deployed app loads instantly
+!data/processed/london_sales.parquet
+!outputs/lgbm_model.txt
+!outputs/metrics.json
+!outputs/test_predictions.csv
+!outputs/feature_importance.csv
 
 # Python
 __pycache__/
