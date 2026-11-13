@@ -21,3 +21,7 @@ venv/
 .ipynb_checkpoints/
 .pytest_cache/
 .DS_Store
+
+# Power BI project: local cache and per-user settings
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf

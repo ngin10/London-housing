@@ -1,0 +1,32 @@
+table dim_property_type
+	lineageTag: 2d84bf62-55be-4230-b05a-6f36653f6bb2
+
+	column property_type
+		dataType: string
+		sortByColumn: type_order
+		lineageTag: 7682c05c-9638-498f-9dd8-2c8e7db6adaf
+		summarizeBy: none
+		sourceColumn: property_type
+
+	column type_order
+		dataType: int64
+		isHidden
+		lineageTag: 4eae8cb1-c2b5-4add-9eea-b7f4f8e2bc25
+		summarizeBy: none
+		sourceColumn: type_order
+
+	column is_house
+		dataType: string
+		lineageTag: 9f089ea4-4282-4dd1-bbdc-c81690c6051f
+		summarizeBy: none
+		sourceColumn: is_house
+
+	partition dim_property_type = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_property_type.csv"), [Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"property_type", type text}, {"type_order", Int64.Type}, {"is_house", type text}}, "en-GB")
+				in
+				    Typed

@@ -97,6 +97,7 @@ pip install -r requirements.txt
 python -m src.build_dataset        # clean + features -> data/processed/
 python -m src.train                # model + holdout predictions -> outputs/
 python -m src.export_powerbi       # star schema CSVs -> powerbi/data/
+python -m src.make_pbip            # Power BI project -> powerbi/london_property.pbip
 python -m src.make_excel           # -> reports/london_property_summary.xlsx
 python -m src.make_deck            # -> reports/london_property_findings.pptx
 pytest
@@ -105,8 +106,9 @@ streamlit run app/app.py           # interactive app
 ```
 
 `make_excel` writes formulas without results: open the workbook in Excel and save it
-once to calculate them (the committed copy is already calculated). To build the
-dashboard, follow [`powerbi/README.md`](powerbi/README.md).
+once to calculate them (the committed copy is already calculated). Open
+`powerbi/london_property.pbip` in Power BI Desktop and click Refresh to see the
+dashboard (details in [`powerbi/README.md`](powerbi/README.md)).
 
 ## Project structure
 
@@ -120,9 +122,10 @@ dashboard, follow [`powerbi/README.md`](powerbi/README.md).
 │   ├── build_dataset.py    raw -> processed parquet
 │   ├── train.py            model training and evaluation
 │   ├── export_powerbi.py   star schema for Power BI and Excel
+│   ├── make_pbip.py        Power BI project (model + report)
 │   ├── make_excel.py       summary workbook
 │   └── make_deck.py        findings deck
-├── powerbi/                data/, measures.dax, build guide
+├── powerbi/                .pbip project, data/, measures.dax, guide
 ├── reports/                Excel workbook and PowerPoint deck
 ├── app/                    Streamlit explorer
 ├── notebooks/              exploratory analysis

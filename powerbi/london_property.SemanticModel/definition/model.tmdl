@@ -1,0 +1,17 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+ref table _Measures
+ref table fact_sales
+ref table fact_valuation_test
+ref table dim_date
+ref table dim_borough
+ref table dim_property_type
+ref table data_quality_funnel

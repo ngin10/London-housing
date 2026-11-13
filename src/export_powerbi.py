@@ -50,12 +50,19 @@ def price_band(price: pd.Series) -> pd.Series:
     return pd.cut(price, PRICE_BANDS, labels=PRICE_BAND_LABELS, right=False).astype(str)
 
 
+def band_order(band: pd.Series) -> pd.Series:
+    """1 = cheapest band; lets Power BI sort bands by value, not alphabetically."""
+    return band.map({b: i + 1 for i, b in enumerate(PRICE_BAND_LABELS)})
+
+
 def fact_sales(df: pd.DataFrame) -> pd.DataFrame:
+    band = price_band(df["price"])
     return pd.DataFrame({
         "transaction_id": df["transaction_id"],
         "sale_date": df["date"].dt.date,
         "price": df["price"],
-        "price_band": price_band(df["price"]),
+        "price_band": band,
+        "price_band_order": band_order(band),
         "borough": borough_name(df["borough"]),
         "property_type": df["property_type"].astype(str),
         "tenure": df["tenure"].astype(str),
@@ -131,6 +138,7 @@ def fact_valuation_test(df: pd.DataFrame) -> pd.DataFrame | None:
     t["model_within_10pct"] = (t["model_ape"] <= 0.10).astype(int)
     t["model_within_20pct"] = (t["model_ape"] <= 0.20).astype(int)
     t["predicted_band"] = price_band(t["pred_price"])
+    t["predicted_band_order"] = band_order(t["predicted_band"])
     return t.drop(columns="price")
 
 

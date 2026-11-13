@@ -1,0 +1,72 @@
+table fact_valuation_test
+	lineageTag: 1bd5bf89-102a-4290-883d-495202800a79
+
+	column transaction_id
+		dataType: string
+		lineageTag: 7854bd33-23ae-4f49-a0af-086de6d52fe0
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+	column pred_price
+		dataType: double
+		formatString: £#,0
+		lineageTag: 2337e08a-fd1f-45db-94a7-a36cad1896fb
+		summarizeBy: none
+		sourceColumn: pred_price
+
+	column baseline_price
+		dataType: double
+		formatString: £#,0
+		lineageTag: 1966cf0c-b7ab-4cff-8936-67a8a8105b1a
+		summarizeBy: none
+		sourceColumn: baseline_price
+
+	column model_ape
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 1f5551e9-4570-4ef2-b47d-f39a36a87c71
+		summarizeBy: none
+		sourceColumn: model_ape
+
+	column baseline_ape
+		dataType: double
+		formatString: 0.0%
+		lineageTag: beccb3d1-3c4f-4f09-9576-c3add17d89fe
+		summarizeBy: none
+		sourceColumn: baseline_ape
+
+	column model_within_10pct
+		dataType: int64
+		lineageTag: 9ecd61fd-d696-4ab7-9286-af0854b19a55
+		summarizeBy: none
+		sourceColumn: model_within_10pct
+
+	column model_within_20pct
+		dataType: int64
+		lineageTag: 32c2e595-2f76-49a5-b803-4a2394c80a61
+		summarizeBy: none
+		sourceColumn: model_within_20pct
+
+	column predicted_band
+		dataType: string
+		sortByColumn: predicted_band_order
+		lineageTag: 26c1079b-9cb0-456f-b165-4e8d94d35016
+		summarizeBy: none
+		sourceColumn: predicted_band
+
+	column predicted_band_order
+		dataType: int64
+		isHidden
+		lineageTag: 7126ce65-7457-405a-881c-2b6f64899288
+		summarizeBy: none
+		sourceColumn: predicted_band_order
+
+	partition fact_valuation_test = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_valuation_test.csv"), [Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"transaction_id", type text}, {"pred_price", type number}, {"baseline_price", type number}, {"model_ape", type number}, {"baseline_ape", type number}, {"model_within_10pct", Int64.Type}, {"model_within_20pct", Int64.Type}, {"predicted_band", type text}, {"predicted_band_order", Int64.Type}}, "en-GB")
+				in
+				    Typed

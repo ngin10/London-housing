@@ -1,0 +1,188 @@
+table _Measures
+	lineageTag: cf8ddf91-e3a4-4429-a3d1-e3b4c5f56425
+
+	measure 'Sales Count' = COUNTROWS ( fact_sales )
+		formatString: #,0
+		displayFolder: Volume and price
+		lineageTag: bd9b84fc-6a7d-407d-a921-ad7b7652a802
+
+	measure 'Median Price' = MEDIAN ( fact_sales[price] )
+		formatString: £#,0
+		displayFolder: Volume and price
+		lineageTag: c99d72df-7417-43a0-b799-f3d112e79e6f
+
+	measure 'Average Price' = AVERAGE ( fact_sales[price] )
+		formatString: £#,0
+		displayFolder: Volume and price
+		lineageTag: ca5bf2cd-851c-45ce-aa3d-5aad587dda40
+
+	measure 'Total Sales Value' = SUM ( fact_sales[price] )
+		formatString: £#,0
+		displayFolder: Volume and price
+		lineageTag: 1bbe0721-185c-43a1-ad0f-8d149c39117d
+
+	measure 'Share of Sales' = DIVIDE ( [Sales Count], CALCULATE ( [Sales Count], ALLSELECTED () ) )
+		formatString: 0.0%
+		displayFolder: Volume and price
+		lineageTag: b6c38978-3fcf-4c56-9e21-bcbc5659d55b
+
+	measure 'Leasehold Share' = DIVIDE ( CALCULATE ( [Sales Count], fact_sales[tenure] = "Leasehold" ), [Sales Count] )
+		formatString: 0.0%
+		displayFolder: Volume and price
+		lineageTag: f4b38f78-215e-476c-9458-8f82004f3f70
+
+	measure 'New Build Share' = DIVIDE ( CALCULATE ( [Sales Count], fact_sales[new_build] = "New build" ), [Sales Count] )
+		formatString: 0.0%
+		displayFolder: Volume and price
+		lineageTag: d9ac79a6-8868-46e8-96cd-0b7d662ae244
+
+	measure 'New Build Premium %' = ```
+			VAR NewBuild = CALCULATE ( [Median Price], fact_sales[new_build] = "New build" )
+			VAR Existing = CALCULATE ( [Median Price], fact_sales[new_build] = "Existing" )
+			RETURN
+			    IF ( NOT ISBLANK ( NewBuild ) && NOT ISBLANK ( Existing ), DIVIDE ( NewBuild, Existing ) - 1 )
+			```
+		formatString: 0.0%
+		displayFolder: Volume and price
+		lineageTag: 4efac6e5-462b-4bfb-ac03-724877398185
+
+	measure 'Sales Count PM' = CALCULATE ( [Sales Count], DATEADD ( dim_date[date], -1, MONTH ) )
+		formatString: #,0
+		displayFolder: Month on month
+		lineageTag: 9a79457e-96e5-47ae-a900-10a3d617e0b0
+
+	measure 'Sales MoM %' = DIVIDE ( [Sales Count] - [Sales Count PM], [Sales Count PM] )
+		formatString: 0.0%
+		displayFolder: Month on month
+		lineageTag: 7b1ebac4-c50b-4523-bf14-b66e9474567d
+
+	measure 'Median Price PM' = CALCULATE ( [Median Price], DATEADD ( dim_date[date], -1, MONTH ) )
+		formatString: £#,0
+		displayFolder: Month on month
+		lineageTag: 0778372f-206b-408b-b5ea-aa467402bd7c
+
+	measure 'Median Price MoM %' = DIVIDE ( [Median Price] - [Median Price PM], [Median Price PM] )
+		formatString: 0.0%
+		displayFolder: Month on month
+		lineageTag: f0d9609d-7eb1-415b-8f6f-fa6f97a6bb8d
+
+	measure 'Median Price 3M Rolling' = ```
+			CALCULATE (
+			    [Median Price],
+			    DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH )
+			)
+			```
+		formatString: £#,0
+		displayFolder: Month on month
+		lineageTag: 9734706b-9edf-4fc7-808f-f0af4fb0891b
+
+	measure 'Sales Before SDLT Change' = CALCULATE ( [Sales Count], dim_date[sdlt_period] = "Before 1 Apr 2025" )
+		formatString: #,0
+		displayFolder: Stamp duty change (1 april 2025)
+		lineageTag: 55cd5515-fdf7-49f9-b513-8fe62f0fa81c
+
+	measure 'Sales From SDLT Change' = CALCULATE ( [Sales Count], dim_date[sdlt_period] = "From 1 Apr 2025" )
+		formatString: #,0
+		displayFolder: Stamp duty change (1 april 2025)
+		lineageTag: 98c1658f-fa97-4630-9539-79e2e58090e1
+
+	measure 'March 2025 vs Jan-Feb Average' = ```
+			VAR March = CALCULATE ( [Sales Count], dim_date[year_month] = "2025-03" )
+			VAR JanFeb =
+			    CALCULATE ( [Sales Count], dim_date[year_month] IN { "2025-01", "2025-02" } ) / 2
+			RETURN
+			    DIVIDE ( March, JanFeb )
+			```
+		formatString: 0.0"×"
+		displayFolder: Stamp duty change (1 april 2025)
+		lineageTag: 1b59aa22-2416-4452-b6b2-46f3e07e10d6
+
+	measure 'Median Crimes (12m)' = MEDIAN ( fact_sales[crimes_12m] )
+		formatString: #,0
+		displayFolder: Crime
+		lineageTag: acad6e1a-70b6-46fc-acdd-f12cc5dd01ba
+
+	measure 'Median Burglaries (12m)' = MEDIAN ( fact_sales[burglaries_12m] )
+		formatString: #,0
+		displayFolder: Crime
+		lineageTag: bb216bff-f324-474d-883e-0a1c8bbdd894
+
+	measure 'Borough Coverage' = SELECTEDVALUE ( dim_borough[coverage], "Multiple boroughs" )
+		displayFolder: Data coverage
+		lineageTag: 44f06a7c-9190-45fd-b9ac-5293af50a869
+
+	measure 'Median Price (Reliable Boroughs)' = CALCULATE ( [Median Price], dim_borough[coverage] = "Reliable (300+ sales)" )
+		formatString: £#,0
+		displayFolder: Data coverage
+		lineageTag: 631dfcf4-60c4-4353-b0c8-e1ec2b3c9254
+
+	measure 'Raw Records' = CALCULATE ( SUM ( data_quality_funnel[rows_remaining] ), data_quality_funnel[step_order] = 0 )
+		formatString: #,0
+		displayFolder: Data quality funnel
+		lineageTag: c5f8ef26-ed4c-4fcf-9cf2-30b130b5f13a
+
+	measure 'Clean Records' = ```
+			VAR LastStep = MAX ( data_quality_funnel[step_order] )
+			RETURN
+			    CALCULATE (
+			        SUM ( data_quality_funnel[rows_remaining] ),
+			        data_quality_funnel[step_order] = LastStep
+			    )
+			```
+		formatString: #,0
+		displayFolder: Data quality funnel
+		lineageTag: d00398bd-e2b2-4980-9a78-ee5a35d7ac94
+
+	measure 'Records Kept %' = DIVIDE ( [Clean Records], [Raw Records] )
+		formatString: 0.0%
+		displayFolder: Data quality funnel
+		lineageTag: 5fcd7727-88d8-4c55-9059-d3cc8a2fcdec
+
+	measure 'Valuations Tested' = COUNTROWS ( fact_valuation_test )
+		formatString: #,0
+		displayFolder: Valuation accuracy (holdout nov 2025 - jan 2026)
+		lineageTag: 898b39d4-d7a3-4c5e-9e8b-bd53656addbe
+
+	measure 'Model Median Error %' = MEDIAN ( fact_valuation_test[model_ape] )
+		formatString: 0.0%
+		displayFolder: Valuation accuracy (holdout nov 2025 - jan 2026)
+		lineageTag: f6975dec-94e2-4b23-8d0f-35438779588a
+
+	measure 'Baseline Median Error %' = MEDIAN ( fact_valuation_test[baseline_ape] )
+		formatString: 0.0%
+		displayFolder: Valuation accuracy (holdout nov 2025 - jan 2026)
+		lineageTag: 614459fc-b6f8-4348-a18a-9f2d03bf11e8
+
+	measure 'Model Within 10%' = AVERAGE ( fact_valuation_test[model_within_10pct] )
+		formatString: 0.0%
+		displayFolder: Valuation accuracy (holdout nov 2025 - jan 2026)
+		lineageTag: 81c2172a-4208-4c2d-8c9a-64787f3ec0ba
+
+	measure 'Model Within 20%' = AVERAGE ( fact_valuation_test[model_within_20pct] )
+		formatString: 0.0%
+		displayFolder: Valuation accuracy (holdout nov 2025 - jan 2026)
+		lineageTag: 99a5ebb9-2721-4c14-9db1-7eb525078e74
+
+	measure 'Error Reduction vs Baseline' = 1 - DIVIDE ( [Model Median Error %], [Baseline Median Error %] )
+		formatString: 0.0%
+		displayFolder: Valuation accuracy (holdout nov 2025 - jan 2026)
+		lineageTag: 37f769c6-c477-4baa-b7b3-635f48a91c91
+
+	measure 'Title Overview' = ```
+			"London home sales: " & FORMAT ( [Sales Count], "#,0" ) & " sales, median "
+			    & FORMAT ( [Median Price], "£#,0" )
+			```
+		displayFolder: Dynamic titles
+		lineageTag: c4a09275-aeea-4004-bb63-ddb27016b26d
+
+	column Value
+		dataType: string
+		isHidden
+		lineageTag: 5caafa4c-b54f-43e9-b4d4-3b354081a133
+		summarizeBy: none
+		sourceColumn: Value
+
+	partition _Measures = m
+		mode: import
+		source =
+				#table(type table [Value = text], {})

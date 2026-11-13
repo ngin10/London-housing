@@ -1,0 +1,36 @@
+table dim_borough
+	lineageTag: e83c8138-3d36-4cd8-aa90-fa5f3bfede57
+
+	column borough
+		dataType: string
+		lineageTag: 5c946d0f-4598-48e3-b30c-4c515cb6eee4
+		summarizeBy: none
+		sourceColumn: borough
+
+	column inner_outer
+		dataType: string
+		lineageTag: 656f310c-9a33-4877-a830-f5d10c013f1d
+		summarizeBy: none
+		sourceColumn: inner_outer
+
+	column sales_count
+		dataType: int64
+		lineageTag: 4be7bba2-4ae8-4255-aa65-84cdf4b366d9
+		summarizeBy: none
+		sourceColumn: sales_count
+
+	column coverage
+		dataType: string
+		lineageTag: 856975c1-c0f3-4ae3-89b2-04c8a2fdff9e
+		summarizeBy: none
+		sourceColumn: coverage
+
+	partition dim_borough = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_borough.csv"), [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"borough", type text}, {"inner_outer", type text}, {"sales_count", Int64.Type}, {"coverage", type text}}, "en-GB")
+				in
+				    Typed
