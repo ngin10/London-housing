@@ -38,23 +38,47 @@ def load_sales_file(path: Path = SALES_FILE) -> pd.DataFrame:
 EXTRA_COLUMNS = ["latitude", "longitude", "lsoa_code", "crimes_12m", "burglaries_12m"]
 
 
-def clean(df: pd.DataFrame) -> pd.DataFrame:
+POSTCODE_RE = r"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$"
+
+# Each cleaning rule: (label shown in the data-quality funnel, rows to keep).
+# clean() and cleaning_funnel() both use this list, so the funnel always matches the data.
+RULES = [
+    ("Inside Greater London", lambda d: d["county"] == LONDON_COUNTY),
+    ("Standard market sale (category A)", lambda d: d["ppd_category_type"] == "A"),
+    ("Not a deleted record", lambda d: d["record_status"].fillna("A") != "D"),
+    ("Residential property type", lambda d: d["property_type"] != "O"),
+    (f"Price £{MIN_PRICE:,} to £{MAX_PRICE:,}", lambda d: d["price"].between(MIN_PRICE, MAX_PRICE)),
+    ("Valid sale date", lambda d: d["date"].notna()),
+    ("Valid postcode", lambda d: d["postcode"].str.match(POSTCODE_RE, na=False)),
+    ("Not a duplicate transaction", lambda d: ~d["transaction_id"].duplicated()),
+]
+
+
+def _prepare(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["price"] = pd.to_numeric(df["price"], errors="coerce")
     df["date"] = pd.to_datetime(df["date_of_transfer"], errors="coerce")
     df["postcode"] = normalise_postcode(df["postcode"])
+    return df
 
-    mask = (
-        (df["county"] == LONDON_COUNTY)
-        & (df["ppd_category_type"] == "A")      # standard price-paid sales only
-        & (df["record_status"].fillna("A") != "D")          # drop deleted records
-        & (df["property_type"] != "O")          # drop 'Other' (non-residential/mixed)
-        & df["price"].between(MIN_PRICE, MAX_PRICE)
-        & df["date"].notna()
-        & df["postcode"].str.match(r"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$", na=False)
-    )
-    df = df.loc[mask]
-    df = df.drop_duplicates(subset="transaction_id")
+
+def cleaning_funnel(df: pd.DataFrame) -> pd.DataFrame:
+    """Row count after each cleaning rule, applied in order."""
+    df = _prepare(df)
+    steps = [("Raw records", len(df))]
+    for label, rule in RULES:
+        df = df.loc[rule(df)]
+        steps.append((label, len(df)))
+    out = pd.DataFrame(steps, columns=["step", "rows_remaining"])
+    out["rows_removed"] = (-out["rows_remaining"].diff()).fillna(0).astype(int)
+    out.insert(0, "step_order", range(len(out)))
+    return out
+
+
+def clean(df: pd.DataFrame) -> pd.DataFrame:
+    df = _prepare(df)
+    for _, rule in RULES:
+        df = df.loc[rule(df)]
 
     df["property_type"] = df["property_type"].map(PROPERTY_TYPE_MAP)
     df["tenure"] = df["duration"].map(DURATION_MAP)
