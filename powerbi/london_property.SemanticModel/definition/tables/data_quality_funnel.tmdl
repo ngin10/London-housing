@@ -1,31 +1,31 @@
 table data_quality_funnel
-	lineageTag: 1ae0c5f9-3282-45b8-af7a-6f24f24585da
+	lineageTag: 9204b3f4-7f5b-5b22-a456-5690438b1f66
 
 	column step_order
 		dataType: int64
 		isHidden
-		lineageTag: 666ecab5-c62e-47d6-af0c-05b78301a693
+		lineageTag: 09d86f62-1ea3-56f2-84ce-73b2368d199f
 		summarizeBy: none
 		sourceColumn: step_order
 
 	column step
 		dataType: string
 		sortByColumn: step_order
-		lineageTag: ec9f7d2b-2cb8-4b8e-92ee-4378a30b17be
+		lineageTag: fa3602c5-4270-5caa-880d-e2cc787a222c
 		summarizeBy: none
 		sourceColumn: step
 
 	column rows_remaining
 		dataType: int64
 		formatString: #,0
-		lineageTag: efc8caad-e4ba-4645-a50b-4bbc21167bec
+		lineageTag: 878bbc84-aa2b-5705-b2ea-5fb6ee6c8992
 		summarizeBy: none
 		sourceColumn: rows_remaining
 
 	column rows_removed
 		dataType: int64
 		formatString: #,0
-		lineageTag: 97a94a29-ead2-4c24-8ef6-849756c28ccf
+		lineageTag: 2923a1aa-a7cf-5fba-885f-5c07b40d6c5b
 		summarizeBy: none
 		sourceColumn: rows_removed
 

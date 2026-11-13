@@ -1,4 +1,4 @@
 expression DataFolder = "C:\Users\ADMIN\Desktop\london-property-prices\powerbi\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
-	lineageTag: 83f49efb-d869-4b9c-90ef-10f3ec5a446f
+	lineageTag: 3df2a60b-e478-59d7-bbed-b1c9ee557c23
 
 	annotation PBI_ResultType = Text

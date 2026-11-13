@@ -1,111 +1,111 @@
 table fact_sales
-	lineageTag: 459be094-d39c-4648-bf01-20b4f38118bd
+	lineageTag: cc7b39e6-dbd6-5d35-8597-3dcf6c747d58
 
 	column transaction_id
 		dataType: string
-		lineageTag: 66f17e90-17b5-4ec9-9d0c-56dd15f58140
+		lineageTag: ec93c45b-c3d7-5c5c-abb7-270390566301
 		summarizeBy: none
 		sourceColumn: transaction_id
 
 	column sale_date
 		dataType: dateTime
 		formatString: dd mmm yyyy
-		lineageTag: 8f07bb9f-c6ed-4f19-958f-34beed32f3e8
+		lineageTag: bf2d93ce-34ec-5fa8-b6da-8b54b00d28f5
 		summarizeBy: none
 		sourceColumn: sale_date
 
 	column price
 		dataType: int64
 		formatString: £#,0
-		lineageTag: e4764e3a-0dc3-435f-8d08-279fc03ab0f1
+		lineageTag: ee1d8f7d-be9c-5d6e-8bad-43420c8b6417
 		summarizeBy: none
 		sourceColumn: price
 
 	column price_band
 		dataType: string
 		sortByColumn: price_band_order
-		lineageTag: 307995be-ba72-4761-b0fb-2d0efbdf98eb
+		lineageTag: 2514ac4d-d0d3-5f79-ad8e-903963076c59
 		summarizeBy: none
 		sourceColumn: price_band
 
 	column price_band_order
 		dataType: int64
 		isHidden
-		lineageTag: edbe02d2-d1ff-48a6-8720-aa5b02ad961b
+		lineageTag: 20694a7d-dea1-5f26-b0fd-cccb1032c805
 		summarizeBy: none
 		sourceColumn: price_band_order
 
 	column borough
 		dataType: string
-		lineageTag: 9abbe28e-c6c0-460c-a33c-e9f35060694d
+		lineageTag: 41028817-a3cf-54bc-a7bb-9d24c8292e71
 		summarizeBy: none
 		sourceColumn: borough
 
 	column property_type
 		dataType: string
-		lineageTag: 6d418291-14c3-4598-a794-2ec9416e1ed6
+		lineageTag: a84530b3-92b8-5d97-a5c0-be8fb9c498e2
 		summarizeBy: none
 		sourceColumn: property_type
 
 	column tenure
 		dataType: string
-		lineageTag: 23b51ab4-8464-4933-acd8-0966684350d1
+		lineageTag: 3eeef96d-fd54-56c7-9b33-1e39a97bee42
 		summarizeBy: none
 		sourceColumn: tenure
 
 	column new_build
 		dataType: string
-		lineageTag: 3dab3b89-c8ce-43bc-a25a-bab67c0f2e82
+		lineageTag: 1d1640be-7113-56c6-9392-cda56ecf7471
 		summarizeBy: none
 		sourceColumn: new_build
 
 	column postcode
 		dataType: string
-		lineageTag: 71f45fe9-68c5-41dd-80d9-37a2b408eee2
+		lineageTag: 364c5f0d-501e-538c-a843-28fd2a06089c
 		summarizeBy: none
 		sourceColumn: postcode
 
 	column outward_code
 		dataType: string
-		lineageTag: 053b4955-a383-4b90-8665-381e8d2afb19
+		lineageTag: b7cef398-d500-59aa-9a44-21e8fac7ad67
 		summarizeBy: none
 		sourceColumn: outward_code
 
 	column postcode_sector
 		dataType: string
-		lineageTag: 9b8f943c-6637-4881-a801-98f6adf44ca2
+		lineageTag: d9bec21a-5184-538e-9bd2-5e110926c746
 		summarizeBy: none
 		sourceColumn: postcode_sector
 
 	column lsoa_code
 		dataType: string
-		lineageTag: 36cb89b2-e9a6-4891-94bf-fd7e5ab93613
+		lineageTag: 877f1e99-7d20-5f84-a076-9bc457b4ead8
 		summarizeBy: none
 		sourceColumn: lsoa_code
 
 	column latitude
 		dataType: double
 		dataCategory: Latitude
-		lineageTag: ecbf0d62-8118-4b07-9ce0-b1eb8ac50a86
+		lineageTag: 25e7dc4d-3b4b-546d-8f78-fec3e9136a68
 		summarizeBy: none
 		sourceColumn: latitude
 
 	column longitude
 		dataType: double
 		dataCategory: Longitude
-		lineageTag: 97480e2f-e9c5-4b01-a2aa-6b44f54edf28
+		lineageTag: 065c4290-78be-5428-9441-cfd9b2cf2254
 		summarizeBy: none
 		sourceColumn: longitude
 
 	column crimes_12m
 		dataType: double
-		lineageTag: 479e65cc-e02f-4188-b379-d2f6c1367a38
+		lineageTag: 8d4cc349-487b-50f1-8a84-7b6c8ed24098
 		summarizeBy: none
 		sourceColumn: crimes_12m
 
 	column burglaries_12m
 		dataType: double
-		lineageTag: 91bb84c9-3142-407e-8616-3019211d4a08
+		lineageTag: c0dd2702-9640-5d96-a0fb-450f2d1902fc
 		summarizeBy: none
 		sourceColumn: burglaries_12m
 

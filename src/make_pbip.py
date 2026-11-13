@@ -25,12 +25,13 @@ DATA_DIR = PBI / "data"
 # ---------------------------------------------------------------- tables
 # (column, TMDL dataType, Power Query type, summarizeBy, extra properties)
 T, I, D, DT = "string", "int64", "double", "dateTime"
+PRICE_K = "£#,0"   # digit grouping follows the viewer's regional setting (en-GB: £1,190,000)
 PQ = {T: "type text", I: "Int64.Type", D: "type number", DT: "type date"}
 
 TABLES = {
     "fact_sales": [
         ("transaction_id", T, {}), ("sale_date", DT, {"formatString": "dd mmm yyyy"}),
-        ("price", I, {"formatString": "£#,0"}),
+        ("price", I, {"formatString": PRICE_K}),
         ("price_band", T, {"sortByColumn": "price_band_order"}),
         ("price_band_order", I, {"isHidden": True}),
         ("borough", T, {}), ("property_type", T, {}), ("tenure", T, {}), ("new_build", T, {}),
@@ -40,8 +41,8 @@ TABLES = {
         ("crimes_12m", D, {}), ("burglaries_12m", D, {}),
     ],
     "fact_valuation_test": [
-        ("transaction_id", T, {}), ("pred_price", D, {"formatString": "£#,0"}),
-        ("baseline_price", D, {"formatString": "£#,0"}),
+        ("transaction_id", T, {}), ("pred_price", D, {"formatString": PRICE_K}),
+        ("baseline_price", D, {"formatString": PRICE_K}),
         ("model_ape", D, {"formatString": "0.0%"}), ("baseline_ape", D, {"formatString": "0.0%"}),
         ("model_within_10pct", I, {}), ("model_within_20pct", I, {}),
         ("predicted_band", T, {"sortByColumn": "predicted_band_order"}),
@@ -80,12 +81,13 @@ def q(name: str) -> str:
     return name if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) else "'" + name.replace("'", "''") + "'"
 
 
-def tag() -> str:
-    return str(uuid.uuid4())
+def tag(*key) -> str:
+    """Stable ID per object, so regenerating the project gives a clean git diff."""
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, "london_property/" + "/".join(key)))
 
 
 def table_tmdl(name: str, cols) -> str:
-    lines = [f"table {q(name)}", f"\tlineageTag: {tag()}"]
+    lines = [f"table {q(name)}", f"\tlineageTag: {tag(name)}"]
     if name == "dim_date":
         lines.append("\tdataCategory: Time")
     lines.append("")
@@ -97,7 +99,7 @@ def table_tmdl(name: str, cols) -> str:
         for k in ("formatString", "dataCategory", "sortByColumn"):
             if k in props:
                 lines.append(f"\t\t{k}: {props[k]}")
-        lines += [f"\t\tlineageTag: {tag()}", "\t\tsummarizeBy: none", f"\t\tsourceColumn: {col}", ""]
+        lines += [f"\t\tlineageTag: {tag(name, col)}", "\t\tsummarizeBy: none", f"\t\tsourceColumn: {col}", ""]
     types = ", ".join(f'{{"{c}", {PQ[t]}}}' for c, t, _ in cols)
     m = [
         "let",
@@ -148,12 +150,12 @@ def measure_format(name: str) -> str | None:
     if any(w in name for w in ("%", "Share", "Within", "Reduction")):
         return "0.0%"
     if any(w in name for w in ("Price", "Value")):
-        return "£#,0"
+        return PRICE_K
     return "#,0"
 
 
 def measures_tmdl(measures) -> str:
-    lines = ["table _Measures", f"\tlineageTag: {tag()}", ""]
+    lines = ["table _Measures", f"\tlineageTag: {tag('_Measures')}", ""]
     for m in measures:
         expr = [e.strip() if i == 0 else e for i, e in enumerate(m["expr"])]
         if len(expr) == 1:
@@ -167,8 +169,8 @@ def measures_tmdl(measures) -> str:
             lines.append(f"\t\tformatString: {fmt}")
         if m["folder"]:
             lines.append(f"\t\tdisplayFolder: {m['folder']}")
-        lines += [f"\t\tlineageTag: {tag()}", ""]
-    lines += ["\tcolumn Value", "\t\tdataType: string", "\t\tisHidden", f"\t\tlineageTag: {tag()}",
+        lines += [f"\t\tlineageTag: {tag('_Measures', m['name'])}", ""]
+    lines += ["\tcolumn Value", "\t\tdataType: string", "\t\tisHidden", f"\t\tlineageTag: {tag('_Measures', 'Value')}",
               "\t\tsummarizeBy: none", "\t\tsourceColumn: Value", "",
               "\tpartition _Measures = m", "\t\tmode: import", "\t\tsource =",
               '\t\t\t\t#table(type table [Value = text], {})', ""]
@@ -200,14 +202,14 @@ def write_model(measures) -> None:
     folder = str(DATA_DIR) + "\\"          # M text has no backslash escapes
     (d / "expressions.tmdl").write_text(
         f'expression DataFolder = "{folder}" meta [IsParameterQuery=true, Type="Text", '
-        f'IsParameterQueryRequired=true]\n\tlineageTag: {tag()}\n\n'
+        f'IsParameterQueryRequired=true]\n\tlineageTag: {tag("DataFolder")}\n\n'
         "\tannotation PBI_ResultType = Text\n", encoding="utf-8")
     for name, cols in TABLES.items():
         (d / "tables" / f"{name}.tmdl").write_text(table_tmdl(name, cols), encoding="utf-8")
     (d / "tables" / "_Measures.tmdl").write_text(measures_tmdl(measures), encoding="utf-8")
     rel = []
     for ft, fc, tt, tc in RELATIONSHIPS:
-        rel += [f"relationship {tag()}", f"\tfromColumn: {q(ft)}.{q(fc)}", f"\ttoColumn: {q(tt)}.{q(tc)}", ""]
+        rel += [f"relationship {tag(ft, fc, tt, tc)}", f"\tfromColumn: {q(ft)}.{q(fc)}", f"\ttoColumn: {q(tt)}.{q(tc)}", ""]
     (d / "relationships.tmdl").write_text("\n".join(rel), encoding="utf-8")
 
 
@@ -223,11 +225,28 @@ def colour(hex_):
     return {"solid": {"color": lit(f"'{hex_}'")}}
 
 
+# Display names for fields in table headers, legends and axes
+LABELS = {
+    "borough": "Borough", "inner_outer": "Inner / Outer", "coverage": "Coverage",
+    "property_type": "Property type", "sdlt_period": "Period", "price_band": "Price band",
+    "month_label": "Month", "predicted_band": "Predicted value", "step": "Cleaning rule",
+    "Sales Count": "Sales", "Median Price": "Median price", "Leasehold Share": "Leasehold",
+    "Median Crimes (12m)": "Median crimes (12m)", "Valuations Tested": "Valuations",
+    "Median Price 3M Rolling": "Median price (3-month rolling)",
+    "Median Price (Reliable Boroughs)": "Median price",
+    "Model Median Error %": "Model", "Baseline Median Error %": "Benchmark",
+}
+
+
 class Q:
     """Builds a visual's prototypeQuery and its role projections."""
 
     def __init__(self):
-        self.sources, self.select, self.proj = {}, [], {}
+        self.sources, self.select, self.proj, self.labels = {}, [], {}, {}
+
+    def _label(self, ref, name):
+        if name in LABELS:
+            self.labels[ref] = LABELS[name]
 
     def _src(self, entity):
         if entity not in self.sources:
@@ -239,6 +258,7 @@ class Q:
         self.select.append({"Measure": {"Expression": self._src(entity), "Property": name},
                             "Name": ref, "NativeReferenceName": name})
         self.proj.setdefault(role, []).append({"queryRef": ref})
+        self._label(ref, name)
         return self
 
     def column(self, role, entity, name):
@@ -246,6 +266,7 @@ class Q:
         self.select.append({"Column": {"Expression": self._src(entity), "Property": name},
                             "Name": ref, "NativeReferenceName": name})
         self.proj.setdefault(role, []).append({"queryRef": ref, **({"active": True} if role == "Category" else {})})
+        self._label(ref, name)
         return self
 
     def sum(self, role, entity, name):
@@ -278,6 +299,8 @@ class Page:
         if query is not None:
             single["projections"] = query.proj
             single["prototypeQuery"] = query.query(order)
+            if query.labels:
+                single["columnProperties"] = {r: {"displayName": l} for r, l in query.labels.items()}
         if objects:
             single["objects"] = objects
         vco = dict(vc or {})
@@ -286,7 +309,7 @@ class Page:
                                             "fontColor": colour(INK), "fontSize": lit("12D")}}]
         if vco:
             single["vcObjects"] = vco
-        name = uuid.uuid4().hex[:20]
+        name = tag(self.name, str(self.z)).replace("-", "")[:20]
         cfg = {"name": name, "layouts": [{"id": 0, "position": {"x": x, "y": y, "z": self.z * 1000,
                                                                   "width": w, "height": h,
                                                                   "tabOrder": self.z * 1000}}],
@@ -306,13 +329,15 @@ class Page:
 
     def card(self, x, y, measure, label, w=220, h=110):
         self.add("card", x, y, w, h, Q().measure("Values", measure),
-                 objects={"labels": [{"properties": {"color": colour(TEAL), "fontSize": lit("26D")}}],
+                 objects={"labels": [{"properties": {"color": colour(TEAL), "fontSize": lit("26D"),
+                                                     "labelDisplayUnits": lit("1D")}}],
                           "categoryLabels": [{"properties": {"show": lit("false")}}]},
                  title=label, vc={"background": [{"properties": {"color": colour("#EEF1F4")}}]})
 
     def slicer(self, x, y, entity, col, title, w=240, h=60):
         self.add("slicer", x, y, w, h, Q().column("Values", entity, col), title=title,
-                 objects={"data": [{"properties": {"mode": lit("'Dropdown'")}}]})
+                 objects={"data": [{"properties": {"mode": lit("'Dropdown'")}}],
+                          "header": [{"properties": {"show": lit("false")}}]})
 
     def section(self):
         return {"name": self.name, "displayName": self.display, "displayOption": 1,
@@ -322,7 +347,8 @@ class Page:
 
 def bars(series_colour):
     return {"dataPoint": [{"properties": {"fill": colour(series_colour)}}],
-            "labels": [{"properties": {"show": lit("true")}}]}
+            "labels": [{"properties": {"show": lit("true"), "labelDisplayUnits": lit("1D")}}],
+            "valueAxis": [{"properties": {"labelDisplayUnits": lit("1D")}}]}
 
 
 def common_slicers(p, x=1020):

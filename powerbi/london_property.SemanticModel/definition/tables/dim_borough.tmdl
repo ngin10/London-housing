@@ -1,27 +1,27 @@
 table dim_borough
-	lineageTag: e83c8138-3d36-4cd8-aa90-fa5f3bfede57
+	lineageTag: c1c88a54-4e01-5c0a-806f-9aed6d87632e
 
 	column borough
 		dataType: string
-		lineageTag: 5c946d0f-4598-48e3-b30c-4c515cb6eee4
+		lineageTag: a96d264f-51fd-5615-a010-f34eab155f47
 		summarizeBy: none
 		sourceColumn: borough
 
 	column inner_outer
 		dataType: string
-		lineageTag: 656f310c-9a33-4877-a830-f5d10c013f1d
+		lineageTag: 7e501bce-624c-5145-af93-f69ea59631ff
 		summarizeBy: none
 		sourceColumn: inner_outer
 
 	column sales_count
 		dataType: int64
-		lineageTag: 4be7bba2-4ae8-4255-aa65-84cdf4b366d9
+		lineageTag: c2ff8e5c-c77d-5553-bf31-19a59e36704e
 		summarizeBy: none
 		sourceColumn: sales_count
 
 	column coverage
 		dataType: string
-		lineageTag: 856975c1-c0f3-4ae3-89b2-04c8a2fdff9e
+		lineageTag: c1d82fad-4028-5b62-a4e3-63070ae79899
 		summarizeBy: none
 		sourceColumn: coverage
 

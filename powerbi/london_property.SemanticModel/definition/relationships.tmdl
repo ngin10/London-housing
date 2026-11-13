@@ -1,15 +1,15 @@
-relationship fc330f00-33ef-499d-a911-768ebc56536b
+relationship cd198f2b-e8d0-5af1-885c-cec02d2fa854
 	fromColumn: fact_sales.sale_date
 	toColumn: dim_date.date
 
-relationship fe1910b2-a156-4012-bce9-1c96ced5c0f2
+relationship 97b63793-839b-5a2c-864e-de6ee1924f71
 	fromColumn: fact_sales.borough
 	toColumn: dim_borough.borough
 
-relationship a1f52e02-b1f0-444e-8608-30c2f1996a4c
+relationship 69c887ed-bbf4-5930-ab79-6b3a1b4dc7f6
 	fromColumn: fact_sales.property_type
 	toColumn: dim_property_type.property_type
 
-relationship 5e8df800-4d27-48fd-b3e7-363dea51a4a8
+relationship 5251e7af-5d3d-5f6d-933c-723c8a83e222
 	fromColumn: fact_valuation_test.transaction_id
 	toColumn: fact_sales.transaction_id
