@@ -1,0 +1,117 @@
+# Power BI dashboard: build guide
+
+This folder holds everything needed to build the dashboard in Power BI Desktop (free,
+Windows). Once built, save it as `powerbi/london_property.pbix`, export a PDF
+(File > Export > Export to PDF) as `powerbi/london_property.pdf`, and put one
+screenshot per page in `powerbi/screenshots/`.
+
+```
+powerbi/
+├── data/                  # created by: python -m src.export_powerbi
+│   ├── fact_sales.csv           55,035 sales
+│   ├── fact_valuation_test.csv  10,023 holdout valuations
+│   ├── dim_date.csv             one row per day, Jan 2025 - Jan 2026
+│   ├── dim_borough.csv          Inner/Outer London, sales count, coverage flag
+│   ├── dim_property_type.csv    type with sort order
+│   └── data_quality_funnel.csv  rows left after each cleaning rule
+├── measures.dax           # all DAX measures, copy them in one by one
+└── screenshots/
+```
+
+Column definitions are in [`docs/data_dictionary.md`](../docs/data_dictionary.md).
+
+## 1. Load the data
+
+1. **Home > Get data > Text/CSV**, load each CSV in `powerbi/data/`. Click
+   **Transform data** for `fact_sales` and check the types: `sale_date` = Date,
+   `price` = Whole number, `latitude`/`longitude` = Decimal number. Set the data category
+   of `latitude` and `longitude` to Latitude and Longitude (Column tools > Data category).
+2. In `dim_date`, set `date` and `month_start` to Date.
+
+## 2. Model (star schema)
+
+In **Model view**, create these relationships (all single direction, filtering from the
+"one" side to the "many" side):
+
+| From (many) | To (one) | Cardinality |
+|---|---|---|
+| `fact_sales[sale_date]` | `dim_date[date]` | Many to one |
+| `fact_sales[borough]` | `dim_borough[borough]` | Many to one |
+| `fact_sales[property_type]` | `dim_property_type[property_type]` | Many to one |
+| `fact_valuation_test[transaction_id]` | `fact_sales[transaction_id]` | Many to one (each test sale appears once) |
+
+`data_quality_funnel` stands alone, with no relationships.
+
+Then:
+- Select `dim_date` > **Table tools > Mark as date table** > `date`.
+- Sort columns: `month_label` by `year_month`, `weekday` by `weekday_number`,
+  `property_type` (in `dim_property_type`) by `type_order`
+  (select the column > Column tools > Sort by column).
+- Hide the key and sort columns in report view (`year_month`, `weekday_number`,
+  `type_order`, `transaction_id`) so the field list stays tidy.
+- Format `price` as Currency £ with no decimals.
+
+## 3. Measures
+
+Create a table called `_Measures` (Home > Enter data > OK), then add each measure from
+[`measures.dax`](measures.dax). Format the `%` measures as percentages and price
+measures as £ with no decimals.
+
+## 4. Pages
+
+Use the same slicer panel on pages 1-3 (Borough, Property type, Tenure, Inner/Outer
+London) and sync it across pages (View > Sync slicers). Keep a consistent colour per
+property type on every page.
+
+### Page 1: Market overview
+*Question: what does the London market look like, and how did it move over the year?*
+
+- **Cards:** Sales Count, Median Price, Leasehold Share, New Build Share.
+- **Line and clustered column chart:** x = `dim_date[month_label]`,
+  columns = Sales Count, line = Median Price 3M Rolling.
+- **Bar chart:** Median Price by `dim_property_type[property_type]`.
+- **Donut or 100% bar:** Share of Sales by `fact_sales[tenure]`.
+- **Text box** with the finding: "March 2025 saw 10,087 sales, 2.4× the Jan-Feb
+  average, as buyers completed before stamp duty rose on 1 April. April dropped to 1,715."
+
+### Page 2: Borough comparison
+*Question: where is London expensive, and where is the data thin?*
+
+- **Map** (bubble map): Latitude = average of `latitude`, Longitude = average of
+  `longitude`, Location = `postcode_sector`, Bubble size = Sales Count, colour by
+  Median Price (Format > Bubbles > Colors > fx, gradient).
+- **Bar chart, sorted descending:** Median Price (Reliable Boroughs) by `borough`.
+- **Matrix:** borough, Sales Count, Median Price, Leasehold Share, Median Crimes (12m),
+  Borough Coverage. Add conditional formatting (data bars) to Median Price.
+- **Slicer:** `dim_borough[coverage]`, defaulting to "Reliable (300+ sales)".
+- **Text box:** "Four boroughs have fewer than 300 sales in this extract, and
+  outer-borough coverage is partial (see ISSUES.md). Hounslow's high median comes from
+  W4 (Chiswick), which makes up 94% of its sales here."
+
+### Page 3: Stamp duty and price bands
+*Question: how did the 1 April 2025 stamp duty change affect what was bought?*
+
+- **Clustered column:** Sales Count by `month_label`, legend = `sdlt_period`.
+- **100% stacked bar:** Share of Sales by `price_band`, one bar per `sdlt_period`.
+- **Cards:** Sales Before SDLT Change, Sales From SDLT Change,
+  March 2025 vs Jan-Feb Average.
+- **Matrix:** `property_type` rows × `sdlt_period` columns, Median Price values.
+
+### Page 4: Data quality and model accuracy
+*Question: can the numbers and the valuations be trusted, and where do they fall short?*
+
+- **Funnel chart:** `data_quality_funnel[step]` (sorted by `step_order`),
+  values = sum of `rows_remaining`.
+- **Cards:** Raw Records, Clean Records, Records Kept %.
+- **Cards:** Model Median Error %, Baseline Median Error %, Error Reduction vs Baseline,
+  Model Within 10%.
+- **Clustered bar:** Model Median Error % by `fact_valuation_test[predicted_band]`.
+  It shows that error rises with value, from 16% under £300k to 27% over £1.5m.
+- **Table:** borough, Valuations Tested, Model Median Error %, sorted by error.
+
+## 5. Finish
+
+- Add a title bar with `Title Overview` as a dynamic card on page 1.
+- Add a small "Source: HM Land Registry Price Paid Data, Jan 2025 - Jan 2026" footer.
+- Check that every page reads correctly with no slicers selected.
+- Save, export the PDF and take screenshots for the main README.

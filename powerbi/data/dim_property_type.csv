@@ -1,0 +1,5 @@
+property_type,type_order,is_house
+Flat/Maisonette,1,No
+Terraced,2,Yes
+Semi-detached,3,Yes
+Detached,4,Yes

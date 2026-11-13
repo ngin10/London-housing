@@ -1,0 +1,115 @@
+// DAX measures for the London Property dashboard.
+// Create a blank table called _Measures (Home > Enter data > OK) and add each
+// measure below to it (Modeling > New measure), one at a time.
+// Table names match the CSVs in powerbi/data/.
+
+// ---------------------------------------------------------------- volume and price
+
+Sales Count = COUNTROWS ( fact_sales )
+
+Median Price = MEDIAN ( fact_sales[price] )
+
+Average Price = AVERAGE ( fact_sales[price] )
+
+Total Sales Value = SUM ( fact_sales[price] )
+
+// Share of whatever is on the visual's axis, out of everything the slicers allow
+Share of Sales =
+DIVIDE ( [Sales Count], CALCULATE ( [Sales Count], ALLSELECTED () ) )
+
+Leasehold Share =
+DIVIDE ( CALCULATE ( [Sales Count], fact_sales[tenure] = "Leasehold" ), [Sales Count] )
+
+New Build Share =
+DIVIDE ( CALCULATE ( [Sales Count], fact_sales[new_build] = "New build" ), [Sales Count] )
+
+// Blank when either group has no sales, so the visual doesn't show -100%
+New Build Premium % =
+VAR NewBuild = CALCULATE ( [Median Price], fact_sales[new_build] = "New build" )
+VAR Existing = CALCULATE ( [Median Price], fact_sales[new_build] = "Existing" )
+RETURN
+    IF ( NOT ISBLANK ( NewBuild ) && NOT ISBLANK ( Existing ), DIVIDE ( NewBuild, Existing ) - 1 )
+
+// ---------------------------------------------------------------- month on month
+// Needs dim_date marked as the date table (Table tools > Mark as date table > date)
+
+Sales Count PM = CALCULATE ( [Sales Count], DATEADD ( dim_date[date], -1, MONTH ) )
+
+Sales MoM % = DIVIDE ( [Sales Count] - [Sales Count PM], [Sales Count PM] )
+
+Median Price PM = CALCULATE ( [Median Price], DATEADD ( dim_date[date], -1, MONTH ) )
+
+Median Price MoM % = DIVIDE ( [Median Price] - [Median Price PM], [Median Price PM] )
+
+// Rolling 3-month median smooths out the March 2025 spike
+Median Price 3M Rolling =
+CALCULATE (
+    [Median Price],
+    DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH )
+)
+
+// ---------------------------------------------------------------- stamp duty change (1 April 2025)
+
+Sales Before SDLT Change =
+CALCULATE ( [Sales Count], dim_date[sdlt_period] = "Before 1 Apr 2025" )
+
+Sales From SDLT Change =
+CALCULATE ( [Sales Count], dim_date[sdlt_period] = "From 1 Apr 2025" )
+
+// How March 2025 compares with an ordinary month (Jan-Feb 2025 average)
+March 2025 vs Jan-Feb Average =
+VAR March = CALCULATE ( [Sales Count], dim_date[year_month] = "2025-03" )
+VAR JanFeb =
+    CALCULATE ( [Sales Count], dim_date[year_month] IN { "2025-01", "2025-02" } ) / 2
+RETURN
+    DIVIDE ( March, JanFeb )
+
+// ---------------------------------------------------------------- crime
+
+Median Crimes (12m) = MEDIAN ( fact_sales[crimes_12m] )
+
+Median Burglaries (12m) = MEDIAN ( fact_sales[burglaries_12m] )
+
+// ---------------------------------------------------------------- data coverage
+
+Borough Coverage = SELECTEDVALUE ( dim_borough[coverage], "Multiple boroughs" )
+
+// Use in place of Median Price on borough visuals to hide thin boroughs
+Median Price (Reliable Boroughs) =
+CALCULATE ( [Median Price], dim_borough[coverage] = "Reliable (300+ sales)" )
+
+// ---------------------------------------------------------------- data quality funnel
+
+Raw Records =
+CALCULATE ( SUM ( data_quality_funnel[rows_remaining] ), data_quality_funnel[step_order] = 0 )
+
+Clean Records =
+VAR LastStep = MAX ( data_quality_funnel[step_order] )
+RETURN
+    CALCULATE (
+        SUM ( data_quality_funnel[rows_remaining] ),
+        data_quality_funnel[step_order] = LastStep
+    )
+
+Records Kept % = DIVIDE ( [Clean Records], [Raw Records] )
+
+// ---------------------------------------------------------------- valuation accuracy (holdout Nov 2025 - Jan 2026)
+
+Valuations Tested = COUNTROWS ( fact_valuation_test )
+
+Model Median Error % = MEDIAN ( fact_valuation_test[model_ape] )
+
+Baseline Median Error % = MEDIAN ( fact_valuation_test[baseline_ape] )
+
+Model Within 10% = AVERAGE ( fact_valuation_test[model_within_10pct] )
+
+Model Within 20% = AVERAGE ( fact_valuation_test[model_within_20pct] )
+
+Error Reduction vs Baseline =
+1 - DIVIDE ( [Model Median Error %], [Baseline Median Error %] )
+
+// ---------------------------------------------------------------- dynamic titles
+
+Title Overview =
+"London home sales: " & FORMAT ( [Sales Count], "#,0" ) & " sales, median "
+    & FORMAT ( [Median Price], "£#,0" )

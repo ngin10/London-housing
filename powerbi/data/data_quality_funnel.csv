@@ -1,0 +1,10 @@
+step_order,step,rows_remaining,rows_removed
+0,Raw records,69281,0
+1,Inside Greater London,69268,13
+2,Standard market sale (category A),55079,14189
+3,Not a deleted record,55079,0
+4,Residential property type,55079,0
+5,"Price £10,000 to £20,000,000",55060,19
+6,Valid sale date,55060,0
+7,Valid postcode,55035,25
+8,Not a duplicate transaction,55035,0
