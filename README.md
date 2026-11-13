@@ -8,8 +8,16 @@ interactive **Streamlit app**.
 **The question:** what does a typical London home sell for, what explains the
 differences between homes and areas, and how far can an automated valuation be trusted?
 
-<!-- Add dashboard screenshots here once built, e.g.
-![Market overview](powerbi/screenshots/1_overview.png) -->
+![Power BI dashboard: market overview](powerbi/screenshots/1_market_overview.png)
+
+<details>
+<summary>The other three dashboard pages</summary>
+
+![Borough comparison](powerbi/screenshots/2_borough_comparison.png)
+![Stamp duty and price bands](powerbi/screenshots/3_stamp_duty.png)
+![Data quality and valuation accuracy](powerbi/screenshots/4_data_quality_accuracy.png)
+
+</details>
 
 ## Key findings
 

@@ -301,6 +301,14 @@ class Page:
             single["prototypeQuery"] = query.query(order)
             if query.labels:
                 single["columnProperties"] = {r: {"displayName": l} for r, l in query.labels.items()}
+        objects = dict(objects or {})
+        if query is not None and vtype in ("tableEx", "pivotTable"):
+            # Prices in thousands (£1,190K): reads the same whatever the viewer's digit grouping
+            fmt = [{"properties": {"labelDisplayUnits": lit("1000D"), "labelPrecision": lit("0L")},
+                    "selector": {"metadata": s["Name"]}}
+                   for s in query.select if "Measure" in s and is_price(s["Measure"]["Property"])]
+            if fmt:
+                objects["columnFormatting"] = fmt
         if objects:
             single["objects"] = objects
         vco = dict(vc or {})
@@ -328,9 +336,11 @@ class Page:
         self.text(24, 12, 1000, 70, [[(title, 20, True, INK)], [(sub, 11, False, "#5B6577")]])
 
     def card(self, x, y, measure, label, w=220, h=110):
+        label_props = {"color": colour(TEAL), "fontSize": lit("26D"), "labelDisplayUnits": lit("1D")}
+        if is_price(measure):   # £576K; other cards keep the measure's own decimals (19.5%)
+            label_props.update(labelDisplayUnits=lit("1000D"), labelPrecision=lit("0L"))
         self.add("card", x, y, w, h, Q().measure("Values", measure),
-                 objects={"labels": [{"properties": {"color": colour(TEAL), "fontSize": lit("26D"),
-                                                     "labelDisplayUnits": lit("1D")}}],
+                 objects={"labels": [{"properties": label_props}],
                           "categoryLabels": [{"properties": {"show": lit("false")}}]},
                  title=label, vc={"background": [{"properties": {"color": colour("#EEF1F4")}}]})
 
@@ -345,10 +355,16 @@ class Page:
                 "visualContainers": self.visuals}
 
 
-def bars(series_colour):
+def is_price(measure: str) -> bool:
+    return "Price" in measure and "%" not in measure
+
+
+def bars(series_colour, units="1D"):
+    """units: "1D" for plain numbers, "1000D" to show prices in thousands (£890K)."""
     return {"dataPoint": [{"properties": {"fill": colour(series_colour)}}],
-            "labels": [{"properties": {"show": lit("true"), "labelDisplayUnits": lit("1D")}}],
-            "valueAxis": [{"properties": {"labelDisplayUnits": lit("1D")}}]}
+            "labels": [{"properties": {"show": lit("true"), "labelDisplayUnits": lit(units),
+                                       "labelPrecision": lit("0L")}}],
+            "valueAxis": [{"properties": {"labelDisplayUnits": lit(units)}}]}
 
 
 def common_slicers(p, x=1020):
@@ -377,7 +393,7 @@ def build_pages():
     p1.add("clusteredBarChart", 640, 230, 360, 330,
            Q().column("Category", "dim_property_type", "property_type").measure("Y", "Median Price"),
            title="Median price by property type", order=("column", "dim_property_type", "property_type", 1),
-           objects=bars(TEAL))
+           objects=bars(TEAL, "1000D"))
     p1.text(24, 580, 976, 110, [
         [("What happened: ", 12, True, INK),
          ("March 2025 saw 10,087 sales, 2.4× the Jan-Feb average, as buyers completed before stamp "
@@ -392,7 +408,7 @@ def build_pages():
     p2.add("clusteredBarChart", 24, 100, 420, 600,
            Q().column("Category", "dim_borough", "borough").measure("Y", "Median Price (Reliable Boroughs)"),
            title="Median price, boroughs with 300+ sales",
-           order=("measure", S, "Median Price (Reliable Boroughs)", 2), objects=bars(TEAL))
+           order=("measure", S, "Median Price (Reliable Boroughs)", 2), objects=bars(TEAL, "1000D"))
     p2.add("tableEx", 460, 100, 540, 470,
            Q().column("Values", "dim_borough", "borough").column("Values", "dim_borough", "inner_outer")
               .measure("Values", "Sales Count").measure("Values", "Median Price")
