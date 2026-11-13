@@ -1,0 +1,120 @@
+table fact_sales
+	lineageTag: cc7b39e6-dbd6-5d35-8597-3dcf6c747d58
+
+	column transaction_id
+		dataType: string
+		lineageTag: ec93c45b-c3d7-5c5c-abb7-270390566301
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+	column sale_date
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: bf2d93ce-34ec-5fa8-b6da-8b54b00d28f5
+		summarizeBy: none
+		sourceColumn: sale_date
+
+	column price
+		dataType: int64
+		formatString: £#,0
+		lineageTag: ee1d8f7d-be9c-5d6e-8bad-43420c8b6417
+		summarizeBy: none
+		sourceColumn: price
+
+	column price_band
+		dataType: string
+		sortByColumn: price_band_order
+		lineageTag: 2514ac4d-d0d3-5f79-ad8e-903963076c59
+		summarizeBy: none
+		sourceColumn: price_band
+
+	column price_band_order
+		dataType: int64
+		isHidden
+		lineageTag: 20694a7d-dea1-5f26-b0fd-cccb1032c805
+		summarizeBy: none
+		sourceColumn: price_band_order
+
+	column borough
+		dataType: string
+		lineageTag: 41028817-a3cf-54bc-a7bb-9d24c8292e71
+		summarizeBy: none
+		sourceColumn: borough
+
+	column property_type
+		dataType: string
+		lineageTag: a84530b3-92b8-5d97-a5c0-be8fb9c498e2
+		summarizeBy: none
+		sourceColumn: property_type
+
+	column tenure
+		dataType: string
+		lineageTag: 3eeef96d-fd54-56c7-9b33-1e39a97bee42
+		summarizeBy: none
+		sourceColumn: tenure
+
+	column new_build
+		dataType: string
+		lineageTag: 1d1640be-7113-56c6-9392-cda56ecf7471
+		summarizeBy: none
+		sourceColumn: new_build
+
+	column postcode
+		dataType: string
+		lineageTag: 364c5f0d-501e-538c-a843-28fd2a06089c
+		summarizeBy: none
+		sourceColumn: postcode
+
+	column outward_code
+		dataType: string
+		lineageTag: b7cef398-d500-59aa-9a44-21e8fac7ad67
+		summarizeBy: none
+		sourceColumn: outward_code
+
+	column postcode_sector
+		dataType: string
+		lineageTag: d9bec21a-5184-538e-9bd2-5e110926c746
+		summarizeBy: none
+		sourceColumn: postcode_sector
+
+	column lsoa_code
+		dataType: string
+		lineageTag: 877f1e99-7d20-5f84-a076-9bc457b4ead8
+		summarizeBy: none
+		sourceColumn: lsoa_code
+
+	column latitude
+		dataType: double
+		dataCategory: Latitude
+		lineageTag: 25e7dc4d-3b4b-546d-8f78-fec3e9136a68
+		summarizeBy: none
+		sourceColumn: latitude
+
+	column longitude
+		dataType: double
+		dataCategory: Longitude
+		lineageTag: 065c4290-78be-5428-9441-cfd9b2cf2254
+		summarizeBy: none
+		sourceColumn: longitude
+
+	column crimes_12m
+		dataType: double
+		lineageTag: 8d4cc349-487b-50f1-8a84-7b6c8ed24098
+		summarizeBy: none
+		sourceColumn: crimes_12m
+
+	column burglaries_12m
+		dataType: double
+		lineageTag: c0dd2702-9640-5d96-a0fb-450f2d1902fc
+		summarizeBy: none
+		sourceColumn: burglaries_12m
+
+	partition fact_sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_sales.csv"), [Delimiter=",", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"transaction_id", type text}, {"sale_date", type date}, {"price", Int64.Type}, {"price_band", type text}, {"price_band_order", Int64.Type}, {"borough", type text}, {"property_type", type text}, {"tenure", type text}, {"new_build", type text}, {"postcode", type text}, {"outward_code", type text}, {"postcode_sector", type text}, {"lsoa_code", type text}, {"latitude", type number}, {"longitude", type number}, {"crimes_12m", type number}, {"burglaries_12m", type number}}, "en-GB")
+				in
+				    Typed

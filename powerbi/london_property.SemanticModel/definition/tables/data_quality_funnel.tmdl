@@ -1,0 +1,40 @@
+table data_quality_funnel
+	lineageTag: 9204b3f4-7f5b-5b22-a456-5690438b1f66
+
+	column step_order
+		dataType: int64
+		isHidden
+		lineageTag: 09d86f62-1ea3-56f2-84ce-73b2368d199f
+		summarizeBy: none
+		sourceColumn: step_order
+
+	column step
+		dataType: string
+		sortByColumn: step_order
+		lineageTag: fa3602c5-4270-5caa-880d-e2cc787a222c
+		summarizeBy: none
+		sourceColumn: step
+
+	column rows_remaining
+		dataType: int64
+		formatString: #,0
+		lineageTag: 878bbc84-aa2b-5705-b2ea-5fb6ee6c8992
+		summarizeBy: none
+		sourceColumn: rows_remaining
+
+	column rows_removed
+		dataType: int64
+		formatString: #,0
+		lineageTag: 2923a1aa-a7cf-5fba-885f-5c07b40d6c5b
+		summarizeBy: none
+		sourceColumn: rows_removed
+
+	partition data_quality_funnel = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "data_quality_funnel.csv"), [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"step_order", Int64.Type}, {"step", type text}, {"rows_remaining", Int64.Type}, {"rows_removed", Int64.Type}}, "en-GB")
+				in
+				    Typed

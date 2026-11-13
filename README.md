@@ -1,111 +1,141 @@
-# London Property Prices
+# What London homes sold for in 2025, and why
 
-An end-to-end pipeline and price model for London residential property sales, built on
-**HM Land Registry Price Paid Data**, enriched with **postcode-level** location and
-(optionally) EPC features.
+An end-to-end analysis of **55,035 London home sales** (HM Land Registry, January 2025 to
+January 2026): from raw records through cleaning and validation to a **Power BI
+dashboard**, an **Excel summary workbook**, a **stakeholder slide deck** and an
+interactive **Streamlit app**.
 
-## Data
+**The question:** what does a typical London home sell for, what explains the
+differences between homes and areas, and how far can an automated valuation be trusted?
 
-`data/raw/london_sales_final.csv` contains **69,281 London sales (Jan 2025 – Jan 2026)**
-from HM Land Registry Price Paid Data, already joined with postcode coordinates, LSOA,
-and 12-month crime and burglary counts (`crimes_12m`, `burglaries_12m`). After keeping
-standard residential sales (category A, excluding "Other" property types), **55,035**
-sales remain.
+<!-- Add dashboard screenshots here once built, e.g.
+![Market overview](powerbi/screenshots/1_overview.png) -->
 
-The pipeline can also rebuild a dataset from raw Land Registry files
-(`src/download.py` + postcodes.io geocoding) if the CSV is not present.
+## Key findings
 
-## Exploratory analysis
+| | Finding | Evidence |
+|---|---|---|
+| 1 | **A stamp duty deadline distorted the year.** Buyers rushed to complete before thresholds fell on 1 April 2025. | 10,087 sales in March, **2.4×** the Jan-Feb average; April fell 83% to 1,715 |
+| 2 | **Property type sets the price level.** A detached house typically costs 3.1× a flat. | Medians: flat £490k, terraced £790k, semi £890k, detached £1.51m |
+| 3 | **Leasehold houses sell at a steep discount.** | **30-45%** below freehold houses of the same type |
+| 4 | **Location spreads prices nearly threefold.** | Kensington and Chelsea £1.19m vs Bromley £420k (25 boroughs with 300+ sales) |
+| 5 | **Automated valuations beat a simple benchmark, but struggle with expensive homes.** | Median error 19.5% vs 32.4% for the area median (40% lower); error rises from 16% under £300k to 27% above £1.5m |
 
-[`notebooks/London_Property_EDA.ipynb`](notebooks/London_Property_EDA.ipynb) is a full
-EDA written from a valuation and model-risk perspective: a data-quality funnel, the
-effect of the April 2025 stamp duty change, hedonic regression with postcode-sector fixed
-effects, a mix-adjusted price index, spatial autocorrelation of residuals (Moran's I),
-tax-threshold bunching, a comparable-sales baseline and outlier screening. Its findings
-are summarised at the top of the notebook.
+Monthly median prices around March-April 2025 mostly reflect **which** homes sold,
+not prices moving (see [ISSUES.md #3](ISSUES.md#3-the-stamp-duty-deadline-distorts-monthly-figures)).
 
-## Approach
+## What's in this project
 
-1. **Download** yearly Price Paid files from HM Land Registry.
-2. **Clean**: keep Greater London, standard sales (category A), residential property
-   types, sensible price range; normalise postcodes and derive outward code / sector.
-3. **Enrich at postcode level**:
-   - Geocode every unique postcode via the [postcodes.io](https://postcodes.io) bulk API
-     (lat/long, LSOA, MSOA, ward), cached locally.
-   - *Optional*: aggregate EPC certificates to postcode level (median floor area, rooms,
-     mean energy rating). Postcode-level aggregation was chosen over address-level EPC
-     matching, which is slow and error-prone because of inconsistent address formats.
-4. **Features**: property type, tenure, new build, borough, outward code, location,
-   crime and burglary counts, time trend, and **leakage-safe** rolling 6-month median prices for each postcode
-   sector and outward code (only prior months are used).
-5. **Model**: LightGBM on log price, evaluated on a **time-based holdout** (the most
-   recent months) against a sector-median baseline.
+| Deliverable | What it shows | Tools |
+|---|---|---|
+| [Power BI dashboard](powerbi/) | 4 pages: market overview, borough comparison, stamp duty and price bands, data quality and model accuracy. Star-schema model and DAX measures | Power BI, DAX |
+| [Excel workbook](reports/london_property_summary.xlsx) | Borough, monthly and property-type summaries, data-quality funnel with a reconciliation check, valuation accuracy. Every figure is a live formula over the raw sales table | Excel (COUNTIFS, AVERAGEIFS, AGGREGATE, conditional formatting, charts) |
+| [Findings deck](reports/london_property_findings.pptx) | 8 slides for a non-technical audience, with speaker notes and editable charts | PowerPoint |
+| [Issues log](ISSUES.md) | 7 data and analysis issues, each with evidence, root cause, fix and impact | |
+| [Data dictionary](docs/data_dictionary.md) | Every column in every table, with how it was cleaned or derived | |
+| [Price estimator app](app.py) | Deployed Streamlit app: estimate a home's price, market analytics, model transparency | Python, Streamlit, LightGBM |
+| [Market explorer](explorer/) | Second Streamlit app: filters, maps, comparable-sales valuation, model checks | Python, Streamlit, Plotly |
+| [EDA notebook](notebooks/London_Property_EDA.ipynb) | Full exploratory analysis plus advanced statistics (see below) | pandas, statsmodels |
+| [Pipeline](src/) | Load, clean, enrich, build features, train and export; tested with pytest | Python |
+
+## Data and data quality
+
+**Source:** HM Land Registry Price Paid Data, joined with postcode coordinates
+(postcodes.io) and 12-month crime counts per neighbourhood (LSOA).
+
+Cleaning rules are defined once in [`src/clean.py`](src/clean.py) and logged as a
+funnel, so every removed record is accounted for:
+
+| Rule | Rows removed | Rows remaining |
+|---|---:|---:|
+| Raw records | | 69,281 |
+| Outside Greater London | 13 | 69,268 |
+| Not a standard market sale (category B: repossessions, company sales, other transfers) | 14,189 | 55,079 |
+| Price below £10k or above £20m | 19 | 55,060 |
+| Invalid postcode | 25 | **55,035** |
+
+Three checks run on every export: transaction IDs are unique, every sale matches a
+borough and property type in the dimension tables, and the funnel's final count equals
+the rows exported.
+
+**Known limitations** (full detail in [ISSUES.md](ISSUES.md)):
+- Outer boroughs are only partly covered (Sutton has 1 sale, Kingston 23). Boroughs
+  carry a coverage flag, and rankings use only those with 300+ sales.
+- There's no floor area or bedroom count, which limits valuation accuracy for large homes.
+- One year of data spanning a tax change, so seasonality can't be separated from the deadline effect.
+- Crime figures are counts, not rates per resident.
+
+## Valuation model
+
+A LightGBM model on log price, trained on Jan-Oct 2025 and tested on the following three
+months (10,023 sales it never saw). It's compared against a simple benchmark: the median
+price in the same postcode sector over the previous six months.
+
+| Metric | Model | Benchmark |
+|---|---:|---:|
+| Median absolute error | **19.5%** | 32.4% |
+| Within 10% of sale price | **27.1%** | 17.3% |
+| Within 20% of sale price | **50.9%** | 33.1% |
+
+Area-level price features use only earlier months, so nothing from the test period leaks
+into training.
+
+## Advanced analysis (notebook)
+
+[`notebooks/London_Property_EDA.ipynb`](notebooks/London_Property_EDA.ipynb) goes further:
+hedonic regression with postcode-sector fixed effects (what each characteristic is
+worth), a mix-adjusted price index, spatial autocorrelation of residuals (Moran's I),
+tax-threshold bunching, a comparable-sales baseline at six levels of location detail,
+and outlier screening.
+
+## How to run
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate             # Windows (macOS/Linux: source .venv/bin/activate)
+pip install -r requirements.txt
+
+python -m src.build_dataset        # clean + features -> data/processed/
+python -m src.train                # model + holdout predictions -> outputs/
+python -m src.export_powerbi       # star schema CSVs -> powerbi/data/
+python -m src.make_pbip            # Power BI project -> powerbi/london_property.pbip
+python -m src.make_excel           # -> reports/london_property_summary.xlsx
+python -m src.make_deck            # -> reports/london_property_findings.pptx
+pytest
+
+streamlit run app.py               # price estimator (deployed app)
+streamlit run explorer/app.py      # market explorer
+```
+
+`make_excel` writes formulas without results: open the workbook in Excel and save it
+once to calculate them (the committed copy is already calculated). Open
+`powerbi/london_property.pbip` in Power BI Desktop and click Refresh to see the
+dashboard (details in [`powerbi/README.md`](powerbi/README.md)).
 
 ## Project structure
 
 ```
 ├── src/
-│   ├── config.py          # paths, URLs, constants
-│   ├── download.py        # fetch Land Registry yearly files
-│   ├── clean.py           # filtering and cleaning
-│   ├── geo.py             # postcodes.io geocoding + EPC postcode aggregation
-│   ├── features.py        # feature engineering
-│   ├── build_dataset.py   # raw -> processed parquet
-│   └── train.py           # model training and evaluation
-├── notebooks/
-│   └── London_Property_EDA.ipynb   # full exploratory analysis
-├── tests/
-│   └── test_clean.py
-├── data/raw/              # downloaded files (git-ignored)
-├── data/processed/        # processed parquet (git-ignored)
-└── outputs/               # metrics, model, figures (git-ignored)
+│   ├── config.py           paths, URLs, constants
+│   ├── download.py         fetch Land Registry yearly files (optional rebuild)
+│   ├── clean.py            cleaning rules and the data-quality funnel
+│   ├── geo.py              postcode geocoding and optional EPC enrichment
+│   ├── features.py         feature engineering (leakage-safe area prices)
+│   ├── build_dataset.py    raw -> processed parquet
+│   ├── train.py            model training and evaluation
+│   ├── export_powerbi.py   star schema for Power BI and Excel
+│   ├── make_pbip.py        Power BI project (model + report)
+│   ├── make_excel.py       summary workbook
+│   └── make_deck.py        findings deck
+├── powerbi/                .pbip project, data/, measures.dax, guide
+├── reports/                Excel workbook and PowerPoint deck
+├── app.py                  Streamlit price estimator (deployed)
+├── explorer/               Streamlit market explorer
+├── notebooks/              exploratory analysis
+├── docs/data_dictionary.md
+├── ISSUES.md
+└── tests/
 ```
-
-## Running it
-
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-
-python -m src.build_dataset          # uses data/raw/london_sales_final.csv
-python -m src.train --test-months 3
-pytest
-jupyter notebook notebooks/London_Property_EDA.ipynb
-```
-
-To build from raw Land Registry files instead:
-
-```bash
-python -m src.download --years 2023 2024 2025
-python -m src.build_dataset          # add --no-geo to skip geocoding
-```
-
-**Optional EPC features:** register at <https://epc.opendatacommunities.org/>, download
-domestic certificates for the London local authorities, combine them into
-`data/raw/epc_certificates.csv`, and re-run `build_dataset`.
-
-## Outputs
-
-- `outputs/metrics.json`: MAE, MAPE, median APE, share of predictions within 10% / 20%,
-  for both the model and the baseline
-- `outputs/feature_importance.csv`
-- `outputs/test_predictions.csv`
-
-## Results
-
-Time-based holdout: trained on Jan–Oct 2025 (45,012 sales), tested on
-Nov 2025 – Jan 2026 (10,023 sales).
-
-| Metric | LightGBM | Baseline (sector median) |
-|---|---|---|
-| Median absolute % error | **19.5%** | 32.4% |
-| Within 10% of sale price | **27.1%** | 17.3% |
-| Within 20% of sale price | **50.9%** | 33.1% |
-| MAE | **£222k** | £334k |
-
-The strongest features are location (lat/long), crime counts and the lagged sector price.
-The main limitation is that there is no property size information: floor area is the
-biggest driver of price, and adding postcode-level EPC floor area is the obvious next step.
 
 ## Data licences
 

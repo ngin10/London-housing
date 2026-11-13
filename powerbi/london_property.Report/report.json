@@ -1,0 +1,450 @@
+{
+  "config": "{\"version\": \"5.59\", \"themeCollection\": {}, \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"settings\": {\"useStylableVisualContainerHeader\": true, \"exportDataMode\": 1}}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "name": "ReportSection1",
+      "displayName": "Market overview",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 24,
+          "y": 12,
+          "z": 1000,
+          "width": 1000,
+          "height": 70,
+          "config": "{\"name\": \"b496412d5e1d516687c2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 12, \"z\": 1000, \"width\": 1000, \"height\": 70, \"tabOrder\": 1000}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"London home sales, Jan 2025 - Jan 2026\", \"textStyle\": {\"fontSize\": \"20pt\", \"color\": \"#16233B\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"HM Land Registry standard sales. Use the filters on the right; every page shares them.\", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#5B6577\"}}]}]}}]}}}",
+          "filters": "[]",
+          "tabOrder": 1000
+        },
+        {
+          "x": 24,
+          "y": 100,
+          "z": 2000,
+          "width": 220,
+          "height": 110,
+          "config": "{\"name\": \"a9c40990c2c15c3f9d77\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 100, \"z\": 2000, \"width\": 220, \"height\": 110, \"tabOrder\": 2000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Sales Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Sales Count\"}, \"Name\": \"_Measures.Sales Count\", \"NativeReferenceName\": \"Sales Count\"}]}, \"columnProperties\": {\"_Measures.Sales Count\": {\"displayName\": \"Sales\"}}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Sales'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 2000
+        },
+        {
+          "x": 268,
+          "y": 100,
+          "z": 3000,
+          "width": 220,
+          "height": 110,
+          "config": "{\"name\": \"b27aeece7f21533e92c5\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 268, \"y\": 100, \"z\": 3000, \"width\": 220, \"height\": 110, \"tabOrder\": 3000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Median Price\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Median Price\"}, \"Name\": \"_Measures.Median Price\", \"NativeReferenceName\": \"Median Price\"}]}, \"columnProperties\": {\"_Measures.Median Price\": {\"displayName\": \"Median price\"}}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median price'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 3000
+        },
+        {
+          "x": 512,
+          "y": 100,
+          "z": 4000,
+          "width": 220,
+          "height": 110,
+          "config": "{\"name\": \"4ff9b183f2ed5de3b436\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 512, \"y\": 100, \"z\": 4000, \"width\": 220, \"height\": 110, \"tabOrder\": 4000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Leasehold Share\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Leasehold Share\"}, \"Name\": \"_Measures.Leasehold Share\", \"NativeReferenceName\": \"Leasehold Share\"}]}, \"columnProperties\": {\"_Measures.Leasehold Share\": {\"displayName\": \"Leasehold\"}}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Leasehold share'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 4000
+        },
+        {
+          "x": 756,
+          "y": 100,
+          "z": 5000,
+          "width": 220,
+          "height": 110,
+          "config": "{\"name\": \"d9bfd68dc95c50e69453\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 756, \"y\": 100, \"z\": 5000, \"width\": 220, \"height\": 110, \"tabOrder\": 5000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.New Build Share\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"New Build Share\"}, \"Name\": \"_Measures.New Build Share\", \"NativeReferenceName\": \"New Build Share\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'New-build share'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 5000
+        },
+        {
+          "x": 24,
+          "y": 230,
+          "z": 6000,
+          "width": 600,
+          "height": 330,
+          "config": "{\"name\": \"550f328fda2d5a6881c5\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 230, \"z\": 6000, \"width\": 600, \"height\": 330, \"tabOrder\": 6000}}], \"singleVisual\": {\"visualType\": \"lineClusteredColumnComboChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_date.month_label\", \"active\": true}], \"Y\": [{\"queryRef\": \"_Measures.Sales Count\"}], \"Y2\": [{\"queryRef\": \"_Measures.Median Price 3M Rolling\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_date\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"month_label\"}, \"Name\": \"dim_date.month_label\", \"NativeReferenceName\": \"month_label\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Sales Count\"}, \"Name\": \"_Measures.Sales Count\", \"NativeReferenceName\": \"Sales Count\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Price 3M Rolling\"}, \"Name\": \"_Measures.Median Price 3M Rolling\", \"NativeReferenceName\": \"Median Price 3M Rolling\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"month_label\"}}}]}, \"columnProperties\": {\"dim_date.month_label\": {\"displayName\": \"Month\"}, \"_Measures.Sales Count\": {\"displayName\": \"Sales\"}, \"_Measures.Median Price 3M Rolling\": {\"displayName\": \"Median price (3-month rolling)\"}}, \"objects\": {\"dataPoint\": [{\"properties\": {\"fill\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#C9D0D8'\"}}}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Sales per month (columns) and rolling 3-month median price (line)'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 6000
+        },
+        {
+          "x": 640,
+          "y": 230,
+          "z": 7000,
+          "width": 360,
+          "height": 330,
+          "config": "{\"name\": \"607b250d44ac59039dfb\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 230, \"z\": 7000, \"width\": 360, \"height\": 330, \"tabOrder\": 7000}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_property_type.property_type\", \"active\": true}], \"Y\": [{\"queryRef\": \"_Measures.Median Price\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_property_type\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"property_type\"}, \"Name\": \"dim_property_type.property_type\", \"NativeReferenceName\": \"property_type\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Price\"}, \"Name\": \"_Measures.Median Price\", \"NativeReferenceName\": \"Median Price\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"property_type\"}}}]}, \"columnProperties\": {\"dim_property_type.property_type\": {\"displayName\": \"Property type\"}, \"_Measures.Median Price\": {\"displayName\": \"Median price\"}}, \"objects\": {\"dataPoint\": [{\"properties\": {\"fill\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}}}], \"labels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"valueAxis\": [{\"properties\": {\"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median price by property type'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 7000
+        },
+        {
+          "x": 24,
+          "y": 580,
+          "z": 8000,
+          "width": 976,
+          "height": 110,
+          "config": "{\"name\": \"bb9438582a85540f8850\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 580, \"z\": 8000, \"width\": 976, \"height\": 110, \"tabOrder\": 8000}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"What happened: \", \"textStyle\": {\"fontSize\": \"12pt\", \"color\": \"#16233B\", \"fontWeight\": \"bold\"}}, {\"value\": \"March 2025 saw 10,087 sales, 2.4\\u00d7 the Jan-Feb average, as buyers completed before stamp duty thresholds fell on 1 April. April dropped to 1,715. Monthly medians around the deadline mostly reflect which homes sold, so the line uses a rolling 3-month median.\", \"textStyle\": {\"fontSize\": \"12pt\", \"color\": \"#33415C\"}}]}]}}]}}}",
+          "filters": "[]",
+          "tabOrder": 8000
+        },
+        {
+          "x": 1020,
+          "y": 100,
+          "z": 9000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"61040b052baf5d7997ec\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 100, \"z\": 9000, \"width\": 240, \"height\": 60, \"tabOrder\": 9000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.borough\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"borough\"}, \"Name\": \"dim_borough.borough\", \"NativeReferenceName\": \"borough\"}]}, \"columnProperties\": {\"dim_borough.borough\": {\"displayName\": \"Borough\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Borough'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 9000
+        },
+        {
+          "x": 1020,
+          "y": 170,
+          "z": 10000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"17f7f4af680954388362\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 170, \"z\": 10000, \"width\": 240, \"height\": 60, \"tabOrder\": 10000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_property_type.property_type\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_property_type\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"property_type\"}, \"Name\": \"dim_property_type.property_type\", \"NativeReferenceName\": \"property_type\"}]}, \"columnProperties\": {\"dim_property_type.property_type\": {\"displayName\": \"Property type\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Property type'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 10000
+        },
+        {
+          "x": 1020,
+          "y": 240,
+          "z": 11000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"f647914fe2e5539ca9dd\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 240, \"z\": 11000, \"width\": 240, \"height\": 60, \"tabOrder\": 11000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_sales.tenure\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"fact_sales\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"tenure\"}, \"Name\": \"fact_sales.tenure\", \"NativeReferenceName\": \"tenure\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Tenure'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 11000
+        },
+        {
+          "x": 1020,
+          "y": 310,
+          "z": 12000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"9827563e6e6e509d9e7f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 310, \"z\": 12000, \"width\": 240, \"height\": 60, \"tabOrder\": 12000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.inner_outer\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"inner_outer\"}, \"Name\": \"dim_borough.inner_outer\", \"NativeReferenceName\": \"inner_outer\"}]}, \"columnProperties\": {\"dim_borough.inner_outer\": {\"displayName\": \"Inner / Outer\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Inner / Outer London'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 12000
+        }
+      ]
+    },
+    {
+      "name": "ReportSection2",
+      "displayName": "Borough comparison",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 24,
+          "y": 12,
+          "z": 1000,
+          "width": 1000,
+          "height": 70,
+          "config": "{\"name\": \"37fd68927f5755ad9e01\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 12, \"z\": 1000, \"width\": 1000, \"height\": 70, \"tabOrder\": 1000}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Where London is expensive, and where the data is thin\", \"textStyle\": {\"fontSize\": \"20pt\", \"color\": \"#16233B\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Ranking uses only boroughs with 300+ sales in this extract.\", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#5B6577\"}}]}]}}]}}}",
+          "filters": "[]",
+          "tabOrder": 1000
+        },
+        {
+          "x": 24,
+          "y": 100,
+          "z": 2000,
+          "width": 420,
+          "height": 600,
+          "config": "{\"name\": \"cd017577366b5191b7c8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 100, \"z\": 2000, \"width\": 420, \"height\": 600, \"tabOrder\": 2000}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_borough.borough\", \"active\": true}], \"Y\": [{\"queryRef\": \"_Measures.Median Price (Reliable Boroughs)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"borough\"}, \"Name\": \"dim_borough.borough\", \"NativeReferenceName\": \"borough\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Price (Reliable Boroughs)\"}, \"Name\": \"_Measures.Median Price (Reliable Boroughs)\", \"NativeReferenceName\": \"Median Price (Reliable Boroughs)\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Price (Reliable Boroughs)\"}}}]}, \"columnProperties\": {\"dim_borough.borough\": {\"displayName\": \"Borough\"}, \"_Measures.Median Price (Reliable Boroughs)\": {\"displayName\": \"Median price\"}}, \"objects\": {\"dataPoint\": [{\"properties\": {\"fill\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}}}], \"labels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"valueAxis\": [{\"properties\": {\"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median price, boroughs with 300+ sales'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 2000
+        },
+        {
+          "x": 460,
+          "y": 100,
+          "z": 3000,
+          "width": 540,
+          "height": 470,
+          "config": "{\"name\": \"5006979bce4256869f05\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 460, \"y\": 100, \"z\": 3000, \"width\": 540, \"height\": 470, \"tabOrder\": 3000}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.borough\"}, {\"queryRef\": \"dim_borough.inner_outer\"}, {\"queryRef\": \"_Measures.Sales Count\"}, {\"queryRef\": \"_Measures.Median Price\"}, {\"queryRef\": \"_Measures.Leasehold Share\"}, {\"queryRef\": \"_Measures.Median Crimes (12m)\"}, {\"queryRef\": \"dim_borough.coverage\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"borough\"}, \"Name\": \"dim_borough.borough\", \"NativeReferenceName\": \"borough\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"inner_outer\"}, \"Name\": \"dim_borough.inner_outer\", \"NativeReferenceName\": \"inner_outer\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Sales Count\"}, \"Name\": \"_Measures.Sales Count\", \"NativeReferenceName\": \"Sales Count\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Price\"}, \"Name\": \"_Measures.Median Price\", \"NativeReferenceName\": \"Median Price\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Leasehold Share\"}, \"Name\": \"_Measures.Leasehold Share\", \"NativeReferenceName\": \"Leasehold Share\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Crimes (12m)\"}, \"Name\": \"_Measures.Median Crimes (12m)\", \"NativeReferenceName\": \"Median Crimes (12m)\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"coverage\"}, \"Name\": \"dim_borough.coverage\", \"NativeReferenceName\": \"coverage\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Median Price\"}}}]}, \"columnProperties\": {\"dim_borough.borough\": {\"displayName\": \"Borough\"}, \"dim_borough.inner_outer\": {\"displayName\": \"Inner / Outer\"}, \"_Measures.Sales Count\": {\"displayName\": \"Sales\"}, \"_Measures.Median Price\": {\"displayName\": \"Median price\"}, \"_Measures.Leasehold Share\": {\"displayName\": \"Leasehold\"}, \"_Measures.Median Crimes (12m)\": {\"displayName\": \"Median crimes (12m)\"}, \"dim_borough.coverage\": {\"displayName\": \"Coverage\"}}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Borough summary'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 3000
+        },
+        {
+          "x": 460,
+          "y": 585,
+          "z": 4000,
+          "width": 540,
+          "height": 115,
+          "config": "{\"name\": \"9eed704a47a35e7f8e26\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 460, \"y\": 585, \"z\": 4000, \"width\": 540, \"height\": 115, \"tabOrder\": 4000}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Coverage caveat: \", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#16233B\", \"fontWeight\": \"bold\"}}, {\"value\": \"4 boroughs have fewer than 300 sales here (Sutton 1, Kingston 23). Hounslow's high median comes from W4 (Chiswick), 94% of its sales in this extract. See ISSUES.md #2.\", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#33415C\"}}]}]}}]}}}",
+          "filters": "[]",
+          "tabOrder": 4000
+        },
+        {
+          "x": 1020,
+          "y": 100,
+          "z": 5000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"e1b4befe0cc752c4be43\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 100, \"z\": 5000, \"width\": 240, \"height\": 60, \"tabOrder\": 5000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.borough\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"borough\"}, \"Name\": \"dim_borough.borough\", \"NativeReferenceName\": \"borough\"}]}, \"columnProperties\": {\"dim_borough.borough\": {\"displayName\": \"Borough\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Borough'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 5000
+        },
+        {
+          "x": 1020,
+          "y": 170,
+          "z": 6000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"02d40c9afba55444818c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 170, \"z\": 6000, \"width\": 240, \"height\": 60, \"tabOrder\": 6000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_property_type.property_type\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_property_type\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"property_type\"}, \"Name\": \"dim_property_type.property_type\", \"NativeReferenceName\": \"property_type\"}]}, \"columnProperties\": {\"dim_property_type.property_type\": {\"displayName\": \"Property type\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Property type'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 6000
+        },
+        {
+          "x": 1020,
+          "y": 240,
+          "z": 7000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"7e5ea48f27f551bf935b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 240, \"z\": 7000, \"width\": 240, \"height\": 60, \"tabOrder\": 7000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_sales.tenure\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"fact_sales\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"tenure\"}, \"Name\": \"fact_sales.tenure\", \"NativeReferenceName\": \"tenure\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Tenure'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 7000
+        },
+        {
+          "x": 1020,
+          "y": 310,
+          "z": 8000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"7d4949ef5a5955588b8c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 310, \"z\": 8000, \"width\": 240, \"height\": 60, \"tabOrder\": 8000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.inner_outer\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"inner_outer\"}, \"Name\": \"dim_borough.inner_outer\", \"NativeReferenceName\": \"inner_outer\"}]}, \"columnProperties\": {\"dim_borough.inner_outer\": {\"displayName\": \"Inner / Outer\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Inner / Outer London'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 8000
+        }
+      ]
+    },
+    {
+      "name": "ReportSection3",
+      "displayName": "Stamp duty and price bands",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 24,
+          "y": 12,
+          "z": 1000,
+          "width": 1000,
+          "height": 70,
+          "config": "{\"name\": \"c529c09456aa5f9fa276\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 12, \"z\": 1000, \"width\": 1000, \"height\": 70, \"tabOrder\": 1000}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"How the 1 April 2025 stamp duty change affected sales\", \"textStyle\": {\"fontSize\": \"20pt\", \"color\": \"#16233B\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Thresholds fell on 1 April 2025, so buyers rushed to complete in March.\", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#5B6577\"}}]}]}}]}}}",
+          "filters": "[]",
+          "tabOrder": 1000
+        },
+        {
+          "x": 24,
+          "y": 100,
+          "z": 2000,
+          "width": 310,
+          "height": 110,
+          "config": "{\"name\": \"733b54e4c4c350bbab06\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 100, \"z\": 2000, \"width\": 310, \"height\": 110, \"tabOrder\": 2000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Sales Before SDLT Change\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Sales Before SDLT Change\"}, \"Name\": \"_Measures.Sales Before SDLT Change\", \"NativeReferenceName\": \"Sales Before SDLT Change\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Sales before 1 Apr 2025'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 2000
+        },
+        {
+          "x": 354,
+          "y": 100,
+          "z": 3000,
+          "width": 310,
+          "height": 110,
+          "config": "{\"name\": \"513bc01693145502bb8e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 354, \"y\": 100, \"z\": 3000, \"width\": 310, \"height\": 110, \"tabOrder\": 3000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Sales From SDLT Change\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Sales From SDLT Change\"}, \"Name\": \"_Measures.Sales From SDLT Change\", \"NativeReferenceName\": \"Sales From SDLT Change\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Sales from 1 Apr 2025'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 3000
+        },
+        {
+          "x": 684,
+          "y": 100,
+          "z": 4000,
+          "width": 310,
+          "height": 110,
+          "config": "{\"name\": \"0c34792eb1245613a6ae\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 684, \"y\": 100, \"z\": 4000, \"width\": 310, \"height\": 110, \"tabOrder\": 4000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.March 2025 vs Jan-Feb Average\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"March 2025 vs Jan-Feb Average\"}, \"Name\": \"_Measures.March 2025 vs Jan-Feb Average\", \"NativeReferenceName\": \"March 2025 vs Jan-Feb Average\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'March vs Jan-Feb average'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 4000
+        },
+        {
+          "x": 24,
+          "y": 230,
+          "z": 5000,
+          "width": 600,
+          "height": 460,
+          "config": "{\"name\": \"be39bef2d035514080e0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 230, \"z\": 5000, \"width\": 600, \"height\": 460, \"tabOrder\": 5000}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_date.month_label\", \"active\": true}], \"Series\": [{\"queryRef\": \"dim_date.sdlt_period\"}], \"Y\": [{\"queryRef\": \"_Measures.Sales Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_date\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"month_label\"}, \"Name\": \"dim_date.month_label\", \"NativeReferenceName\": \"month_label\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"sdlt_period\"}, \"Name\": \"dim_date.sdlt_period\", \"NativeReferenceName\": \"sdlt_period\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Sales Count\"}, \"Name\": \"_Measures.Sales Count\", \"NativeReferenceName\": \"Sales Count\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"month_label\"}}}]}, \"columnProperties\": {\"dim_date.month_label\": {\"displayName\": \"Month\"}, \"dim_date.sdlt_period\": {\"displayName\": \"Period\"}, \"_Measures.Sales Count\": {\"displayName\": \"Sales\"}}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Sales per month, before and after the change'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 5000
+        },
+        {
+          "x": 640,
+          "y": 230,
+          "z": 6000,
+          "width": 360,
+          "height": 220,
+          "config": "{\"name\": \"a627e29c8d9454ebaf52\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 230, \"z\": 6000, \"width\": 360, \"height\": 220, \"tabOrder\": 6000}}], \"singleVisual\": {\"visualType\": \"hundredPercentStackedBarChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_date.sdlt_period\", \"active\": true}], \"Series\": [{\"queryRef\": \"fact_sales.price_band\"}], \"Y\": [{\"queryRef\": \"_Measures.Sales Count\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_date\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"fact_sales\", \"Type\": 0}, {\"Name\": \"s2\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"sdlt_period\"}, \"Name\": \"dim_date.sdlt_period\", \"NativeReferenceName\": \"sdlt_period\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"price_band\"}, \"Name\": \"fact_sales.price_band\", \"NativeReferenceName\": \"price_band\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s2\"}}, \"Property\": \"Sales Count\"}, \"Name\": \"_Measures.Sales Count\", \"NativeReferenceName\": \"Sales Count\"}]}, \"columnProperties\": {\"dim_date.sdlt_period\": {\"displayName\": \"Period\"}, \"fact_sales.price_band\": {\"displayName\": \"Price band\"}, \"_Measures.Sales Count\": {\"displayName\": \"Sales\"}}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Share of sales by price band'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 6000
+        },
+        {
+          "x": 640,
+          "y": 465,
+          "z": 7000,
+          "width": 360,
+          "height": 225,
+          "config": "{\"name\": \"c119a660bd275a29aec4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 465, \"z\": 7000, \"width\": 360, \"height\": 225, \"tabOrder\": 7000}}], \"singleVisual\": {\"visualType\": \"pivotTable\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Rows\": [{\"queryRef\": \"dim_property_type.property_type\"}], \"Columns\": [{\"queryRef\": \"dim_date.sdlt_period\"}], \"Values\": [{\"queryRef\": \"_Measures.Median Price\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_property_type\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"dim_date\", \"Type\": 0}, {\"Name\": \"s2\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"property_type\"}, \"Name\": \"dim_property_type.property_type\", \"NativeReferenceName\": \"property_type\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"sdlt_period\"}, \"Name\": \"dim_date.sdlt_period\", \"NativeReferenceName\": \"sdlt_period\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s2\"}}, \"Property\": \"Median Price\"}, \"Name\": \"_Measures.Median Price\", \"NativeReferenceName\": \"Median Price\"}]}, \"columnProperties\": {\"dim_property_type.property_type\": {\"displayName\": \"Property type\"}, \"dim_date.sdlt_period\": {\"displayName\": \"Period\"}, \"_Measures.Median Price\": {\"displayName\": \"Median price\"}}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median price by type, before and after'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 7000
+        },
+        {
+          "x": 1020,
+          "y": 100,
+          "z": 8000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"cacee67108055a88a9a3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 100, \"z\": 8000, \"width\": 240, \"height\": 60, \"tabOrder\": 8000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.borough\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"borough\"}, \"Name\": \"dim_borough.borough\", \"NativeReferenceName\": \"borough\"}]}, \"columnProperties\": {\"dim_borough.borough\": {\"displayName\": \"Borough\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Borough'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 8000
+        },
+        {
+          "x": 1020,
+          "y": 170,
+          "z": 9000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"8ec99347cb1c5bcc92d7\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 170, \"z\": 9000, \"width\": 240, \"height\": 60, \"tabOrder\": 9000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_property_type.property_type\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_property_type\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"property_type\"}, \"Name\": \"dim_property_type.property_type\", \"NativeReferenceName\": \"property_type\"}]}, \"columnProperties\": {\"dim_property_type.property_type\": {\"displayName\": \"Property type\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Property type'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 9000
+        },
+        {
+          "x": 1020,
+          "y": 240,
+          "z": 10000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"66afd6dc716051ae9f61\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 240, \"z\": 10000, \"width\": 240, \"height\": 60, \"tabOrder\": 10000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_sales.tenure\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"fact_sales\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"tenure\"}, \"Name\": \"fact_sales.tenure\", \"NativeReferenceName\": \"tenure\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Tenure'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 10000
+        },
+        {
+          "x": 1020,
+          "y": 310,
+          "z": 11000,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"47b82811b770556c8b7b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 310, \"z\": 11000, \"width\": 240, \"height\": 60, \"tabOrder\": 11000}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.inner_outer\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"inner_outer\"}, \"Name\": \"dim_borough.inner_outer\", \"NativeReferenceName\": \"inner_outer\"}]}, \"columnProperties\": {\"dim_borough.inner_outer\": {\"displayName\": \"Inner / Outer\"}}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}], \"header\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Inner / Outer London'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 11000
+        }
+      ]
+    },
+    {
+      "name": "ReportSection4",
+      "displayName": "Data quality and accuracy",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 24,
+          "y": 12,
+          "z": 1000,
+          "width": 1000,
+          "height": 70,
+          "config": "{\"name\": \"a9720f594a665596bd6e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 12, \"z\": 1000, \"width\": 1000, \"height\": 70, \"tabOrder\": 1000}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Can the numbers and the valuations be trusted?\", \"textStyle\": {\"fontSize\": \"20pt\", \"color\": \"#16233B\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Cleaning funnel from src/clean.py; valuations tested on Nov 2025 - Jan 2026 sales the model never saw.\", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#5B6577\"}}]}]}}]}}}",
+          "filters": "[]",
+          "tabOrder": 1000
+        },
+        {
+          "x": 24,
+          "y": 100,
+          "z": 2000,
+          "width": 480,
+          "height": 360,
+          "config": "{\"name\": \"588921fd348554b985ac\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 100, \"z\": 2000, \"width\": 480, \"height\": 360, \"tabOrder\": 2000}}], \"singleVisual\": {\"visualType\": \"funnel\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"data_quality_funnel.step\", \"active\": true}], \"Y\": [{\"queryRef\": \"Sum(data_quality_funnel.rows_remaining)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"data_quality_funnel\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"step\"}, \"Name\": \"data_quality_funnel.step\", \"NativeReferenceName\": \"step\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"rows_remaining\"}}, \"Function\": 0}, \"Name\": \"Sum(data_quality_funnel.rows_remaining)\", \"NativeReferenceName\": \"rows_remaining\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"step\"}}}]}, \"columnProperties\": {\"data_quality_funnel.step\": {\"displayName\": \"Cleaning rule\"}}, \"objects\": {\"dataPoint\": [{\"properties\": {\"fill\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Rows remaining after each cleaning rule'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 2000
+        },
+        {
+          "x": 24,
+          "y": 480,
+          "z": 3000,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\": \"adcafb30adf851369037\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 480, \"z\": 3000, \"width\": 230, \"height\": 110, \"tabOrder\": 3000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Records Kept %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Records Kept %\"}, \"Name\": \"_Measures.Records Kept %\", \"NativeReferenceName\": \"Records Kept %\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Raw records kept'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 3000
+        },
+        {
+          "x": 274,
+          "y": 480,
+          "z": 4000,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\": \"2f3f7ad3b5315c249ac2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 274, \"y\": 480, \"z\": 4000, \"width\": 230, \"height\": 110, \"tabOrder\": 4000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Clean Records\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Clean Records\"}, \"Name\": \"_Measures.Clean Records\", \"NativeReferenceName\": \"Clean Records\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Clean sales'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 4000
+        },
+        {
+          "x": 530,
+          "y": 100,
+          "z": 5000,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\": \"0402c7d66f685bdba3ad\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 530, \"y\": 100, \"z\": 5000, \"width\": 230, \"height\": 110, \"tabOrder\": 5000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Model Median Error %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Model Median Error %\"}, \"Name\": \"_Measures.Model Median Error %\", \"NativeReferenceName\": \"Model Median Error %\"}]}, \"columnProperties\": {\"_Measures.Model Median Error %\": {\"displayName\": \"Model\"}}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Model median error'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 5000
+        },
+        {
+          "x": 780,
+          "y": 100,
+          "z": 6000,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\": \"0cd365ad7c84594cb4b8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 780, \"y\": 100, \"z\": 6000, \"width\": 230, \"height\": 110, \"tabOrder\": 6000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Baseline Median Error %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Baseline Median Error %\"}, \"Name\": \"_Measures.Baseline Median Error %\", \"NativeReferenceName\": \"Baseline Median Error %\"}]}, \"columnProperties\": {\"_Measures.Baseline Median Error %\": {\"displayName\": \"Benchmark\"}}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Benchmark median error'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 6000
+        },
+        {
+          "x": 1030,
+          "y": 100,
+          "z": 7000,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\": \"4446f51e400b5ca9b895\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1030, \"y\": 100, \"z\": 7000, \"width\": 230, \"height\": 110, \"tabOrder\": 7000}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Model Within 20%\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"Model Within 20%\"}, \"Name\": \"_Measures.Model Within 20%\", \"NativeReferenceName\": \"Model Within 20%\"}]}, \"objects\": {\"labels\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#0E7C86'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"26D\"}}}, \"labelDisplayUnits\": {\"expr\": {\"Literal\": {\"Value\": \"1D\"}}}}}], \"categoryLabels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}, \"vcObjects\": {\"background\": [{\"properties\": {\"color\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#EEF1F4'\"}}}}}}}], \"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Model within 20%'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 7000
+        },
+        {
+          "x": 530,
+          "y": 230,
+          "z": 8000,
+          "width": 730,
+          "height": 260,
+          "config": "{\"name\": \"4bef2f508e095575b3ea\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 530, \"y\": 230, \"z\": 8000, \"width\": 730, \"height\": 260, \"tabOrder\": 8000}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"fact_valuation_test.predicted_band\", \"active\": true}], \"Y\": [{\"queryRef\": \"_Measures.Model Median Error %\"}, {\"queryRef\": \"_Measures.Baseline Median Error %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"fact_valuation_test\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"predicted_band\"}, \"Name\": \"fact_valuation_test.predicted_band\", \"NativeReferenceName\": \"predicted_band\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Model Median Error %\"}, \"Name\": \"_Measures.Model Median Error %\", \"NativeReferenceName\": \"Model Median Error %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Baseline Median Error %\"}, \"Name\": \"_Measures.Baseline Median Error %\", \"NativeReferenceName\": \"Baseline Median Error %\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"predicted_band\"}}}]}, \"columnProperties\": {\"fact_valuation_test.predicted_band\": {\"displayName\": \"Predicted value\"}, \"_Measures.Model Median Error %\": {\"displayName\": \"Model\"}, \"_Measures.Baseline Median Error %\": {\"displayName\": \"Benchmark\"}}, \"objects\": {\"labels\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median valuation error by predicted value: model vs benchmark'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 8000
+        },
+        {
+          "x": 530,
+          "y": 505,
+          "z": 9000,
+          "width": 730,
+          "height": 195,
+          "config": "{\"name\": \"c100c51f97e1539382fa\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 530, \"y\": 505, \"z\": 9000, \"width\": 730, \"height\": 195, \"tabOrder\": 9000}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_borough.borough\"}, {\"queryRef\": \"_Measures.Valuations Tested\"}, {\"queryRef\": \"_Measures.Model Median Error %\"}, {\"queryRef\": \"_Measures.Baseline Median Error %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s0\", \"Entity\": \"dim_borough\", \"Type\": 0}, {\"Name\": \"s1\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s0\"}}, \"Property\": \"borough\"}, \"Name\": \"dim_borough.borough\", \"NativeReferenceName\": \"borough\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Valuations Tested\"}, \"Name\": \"_Measures.Valuations Tested\", \"NativeReferenceName\": \"Valuations Tested\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Model Median Error %\"}, \"Name\": \"_Measures.Model Median Error %\", \"NativeReferenceName\": \"Model Median Error %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Baseline Median Error %\"}, \"Name\": \"_Measures.Baseline Median Error %\", \"NativeReferenceName\": \"Baseline Median Error %\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s1\"}}, \"Property\": \"Model Median Error %\"}}}]}, \"columnProperties\": {\"dim_borough.borough\": {\"displayName\": \"Borough\"}, \"_Measures.Valuations Tested\": {\"displayName\": \"Valuations\"}, \"_Measures.Model Median Error %\": {\"displayName\": \"Model\"}, \"_Measures.Baseline Median Error %\": {\"displayName\": \"Benchmark\"}}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Accuracy by borough (hardest first)'\"}}}, \"fontColor\": {\"solid\": {\"color\": {\"expr\": {\"Literal\": {\"Value\": \"'#16233B'\"}}}}}, \"fontSize\": {\"expr\": {\"Literal\": {\"Value\": \"12D\"}}}}}]}}}",
+          "filters": "[]",
+          "tabOrder": 9000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+table dim_date
+	lineageTag: 8e548d74-7b5c-5ac7-85e0-a318a81479fc
+	dataCategory: Time
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: dd mmm yyyy
+		lineageTag: 7f8e0fb1-a816-59c0-923b-38055b2186da
+		summarizeBy: none
+		sourceColumn: date
+
+	column year
+		dataType: int64
+		lineageTag: 9c57d30b-3e67-5455-a1e9-d8f34c35657e
+		summarizeBy: none
+		sourceColumn: year
+
+	column month_number
+		dataType: int64
+		lineageTag: 84c0e27e-4040-5b9d-b153-8ef841726772
+		summarizeBy: none
+		sourceColumn: month_number
+
+	column month_start
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: b59fe317-f45b-54b2-81e5-b6d6232ca65e
+		summarizeBy: none
+		sourceColumn: month_start
+
+	column month_label
+		dataType: string
+		sortByColumn: year_month
+		lineageTag: 4046d844-4164-549b-8766-895205629f8a
+		summarizeBy: none
+		sourceColumn: month_label
+
+	column year_month
+		dataType: string
+		lineageTag: 74f87142-567e-5cea-8d38-1112cbc8ca51
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column quarter
+		dataType: string
+		lineageTag: 321e6689-c3b2-54bc-8942-68a8c7280ed1
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column weekday
+		dataType: string
+		sortByColumn: weekday_number
+		lineageTag: 722a2739-c940-5e34-bdf9-d202d7cdd521
+		summarizeBy: none
+		sourceColumn: weekday
+
+	column weekday_number
+		dataType: int64
+		isHidden
+		lineageTag: 6b5610be-b992-5eed-b3af-1f9785226fb2
+		summarizeBy: none
+		sourceColumn: weekday_number
+
+	column sdlt_period
+		dataType: string
+		lineageTag: ec61709f-843e-5000-84c9-f44f2bdaa9c6
+		summarizeBy: none
+		sourceColumn: sdlt_period
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_date.csv"), [Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date", type date}, {"year", Int64.Type}, {"month_number", Int64.Type}, {"month_start", type date}, {"month_label", type text}, {"year_month", type text}, {"quarter", type text}, {"weekday", type text}, {"weekday_number", Int64.Type}, {"sdlt_period", type text}}, "en-GB")
+				in
+				    Typed

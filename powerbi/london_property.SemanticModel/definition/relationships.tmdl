@@ -1,0 +1,15 @@
+relationship cd198f2b-e8d0-5af1-885c-cec02d2fa854
+	fromColumn: fact_sales.sale_date
+	toColumn: dim_date.date
+
+relationship 97b63793-839b-5a2c-864e-de6ee1924f71
+	fromColumn: fact_sales.borough
+	toColumn: dim_borough.borough
+
+relationship 69c887ed-bbf4-5930-ab79-6b3a1b4dc7f6
+	fromColumn: fact_sales.property_type
+	toColumn: dim_property_type.property_type
+
+relationship 5251e7af-5d3d-5f6d-933c-723c8a83e222
+	fromColumn: fact_valuation_test.transaction_id
+	toColumn: fact_sales.transaction_id

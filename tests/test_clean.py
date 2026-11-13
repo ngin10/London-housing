@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.clean import clean, normalise_postcode
+from src.clean import clean, cleaning_funnel, normalise_postcode
 from src.config import PPD_COLUMNS
 
 
@@ -32,3 +32,17 @@ def test_clean_filters():
     assert out.loc[0, "property_type"] == "Flat/Maisonette"
     assert out.loc[0, "postcode_sector"] == "SW1A 1"
     assert out.loc[0, "outward_code"] == "SW1A"
+
+
+def test_funnel_matches_clean():
+    df = pd.DataFrame([
+        _row(),
+        _row(transaction_id="{A2}", ppd_category_type="B"),
+        _row(transaction_id="{A3}", county="KENT"),
+        _row(transaction_id="{A5}", price="500"),
+        _row(transaction_id="{A1}"),
+    ])
+    funnel = cleaning_funnel(df)
+    assert funnel["rows_remaining"].iloc[0] == 5
+    assert funnel["rows_remaining"].iloc[-1] == len(clean(df)) == 1
+    assert funnel["rows_removed"].sum() == 4
