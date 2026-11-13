@@ -1,0 +1,2 @@
+# Keep the LightGBM model byte-for-byte: CRLF conversion on Windows breaks loading
+outputs/lgbm_model.txt -text

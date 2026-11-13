@@ -33,7 +33,8 @@ not prices moving (see [ISSUES.md #3](ISSUES.md#3-the-stamp-duty-deadline-distor
 | [Findings deck](reports/london_property_findings.pptx) | 8 slides for a non-technical audience, with speaker notes and editable charts | PowerPoint |
 | [Issues log](ISSUES.md) | 7 data and analysis issues, each with evidence, root cause, fix and impact | |
 | [Data dictionary](docs/data_dictionary.md) | Every column in every table, with how it was cleaned or derived | |
-| [Streamlit app](app/) | Interactive explorer: filters, maps, a home valuation tool, model checks | Python, Streamlit, Plotly |
+| [Price estimator app](app.py) | Deployed Streamlit app: estimate a home's price, market analytics, model transparency | Python, Streamlit, LightGBM |
+| [Market explorer](explorer/) | Second Streamlit app: filters, maps, comparable-sales valuation, model checks | Python, Streamlit, Plotly |
 | [EDA notebook](notebooks/London_Property_EDA.ipynb) | Full exploratory analysis plus advanced statistics (see below) | pandas, statsmodels |
 | [Pipeline](src/) | Load, clean, enrich, build features, train and export; tested with pytest | Python |
 
@@ -102,7 +103,8 @@ python -m src.make_excel           # -> reports/london_property_summary.xlsx
 python -m src.make_deck            # -> reports/london_property_findings.pptx
 pytest
 
-streamlit run app/app.py           # interactive app
+streamlit run app.py               # price estimator (deployed app)
+streamlit run explorer/app.py      # market explorer
 ```
 
 `make_excel` writes formulas without results: open the workbook in Excel and save it
@@ -127,7 +129,8 @@ dashboard (details in [`powerbi/README.md`](powerbi/README.md)).
 │   └── make_deck.py        findings deck
 ├── powerbi/                .pbip project, data/, measures.dax, guide
 ├── reports/                Excel workbook and PowerPoint deck
-├── app/                    Streamlit explorer
+├── app.py                  Streamlit price estimator (deployed)
+├── explorer/               Streamlit market explorer
 ├── notebooks/              exploratory analysis
 ├── docs/data_dictionary.md
 ├── ISSUES.md

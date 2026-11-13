@@ -1,6 +1,6 @@
 """London property market explorer.
 
-Run locally (from the repo root):   streamlit run app/app.py
+Run locally (from the repo root):   streamlit run explorer/app.py
 Data:                               data/raw/london_sales_final.csv
 """
 from pathlib import Path
